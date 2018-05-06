@@ -34,7 +34,7 @@ void BuildShaft(double length, double diameter) {
 		true
 	);
 
-	p_PartDocumnet->DisplayName = _T("Shaft"); // Название детали
+	p_PartDocumnet->DisplayName = _T("Вал"); // Название детали
 
 	// Инициализация указателей
 
