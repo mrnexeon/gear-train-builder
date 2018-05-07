@@ -60,6 +60,8 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	p_partFeatures->get_ExtrudeFeatures(&p_ExtrudeFeatures);
 	CircularPatternFeatures *p_circPatFeature;
 	p_partFeatures->get_CircularPatternFeatures(&p_circPatFeature);
+	MirrorFeatures *p_MirrorFeatures;
+	p_partFeatures->get_MirrorFeatures(&p_MirrorFeatures);
 
 	PlanarSketch *p_sketch1;
 
@@ -105,7 +107,7 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	p_sketch2->get_Profiles(&p_Profiles);
 	p_Profiles->raw__AddForSolid(&p_Profile2);
 
-	auto result1 = p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile2, mm_to_cm(thickness * 0.75), kSymmetricExtentDirection, kNewBodyOperation);
+	auto result1 = p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile2, mm_to_cm(thickness * 0.75), kSymmetricExtentDirection, kJoinOperation);
 
 	PlanarSketch *p_sketch3;
 
@@ -156,7 +158,7 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	p_sketch3->get_Profiles(&p_Profiles);
 	p_Profiles->raw__AddForSolid(&p_Profile3);
 
-	auto result2 = p_ExtrudeFeatures->MethodAddByFromToExtent(p_Profile3, result1->GetSideFaces()->GetItem(2), true, result1->GetSideFaces()->GetItem(3), true, kNewBodyOperation);
+	auto result2 = p_ExtrudeFeatures->MethodAddByFromToExtent(p_Profile3, result1->GetSideFaces()->GetItem(1), true, result1->GetSideFaces()->GetItem(2), true, kJoinOperation);
 
 	ObjectCollection *p_collection1;
 	p_invApp->TransientObjects->raw_CreateObjectCollection(vtMissing, &p_collection1);
@@ -185,18 +187,44 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 
 	SketchPointPtr points2[4];
 	
-	double cogHeigth = 10.0;
-	double cogWidth = 8.0;
+	double cogHeigth = 20.0;
 
 	points2[0] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm(outerDiameter / 2.0)), false);
 	points2[1] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm((outerDiameter / 2.0) + cogHeigth)), false);
-	points2[2] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(45.0 + 2.5))), mm_to_cm((outerDiameter / 2.0) + cogHeigth)), false);
-	points2[3] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(45.0 + 5.0))), mm_to_cm(outerDiameter / 2.0)), false);
+	points2[2] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(90.0 + 2.0))), mm_to_cm((outerDiameter / 2.0) + cogHeigth)), false);
+	points2[3] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(
+		mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(90.0 + 3.0))), 
+		mm_to_cm((outerDiameter / 2.0) * sin(deg_to_rad(90.0 + 3.0)))), 
+	false);
 
-	p_Lines->MethodAddByTwoPoints(points1[0], points1[1]);
-	p_Lines->MethodAddByTwoPoints(points1[1], points1[2]);
-	p_Lines->MethodAddByTwoPoints(points1[2], points1[3]);
-	p_Lines->MethodAddByTwoPoints(points1[3], points1[0]);
+	p_Lines->MethodAddByTwoPoints(points2[0], points2[1]);
+	p_Lines->MethodAddByTwoPoints(points2[1], points2[2]);
+	p_Lines->MethodAddByTwoPoints(points2[2], points2[3]);
+	p_Lines->MethodAddByTwoPoints(points2[3], points2[0]);
+
+	Profile *p_Profile4;
+
+	p_sketch4->get_Profiles(&p_Profiles);
+	p_Profiles->raw__AddForSolid(&p_Profile4);
+
+	auto result3 = p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile4, mm_to_cm(thickness), kSymmetricExtentDirection, kJoinOperation);
+
+	ObjectCollection *p_collection2;
+	p_invApp->TransientObjects->raw_CreateObjectCollection(vtMissing, &p_collection2);
+	p_collection2->MethodAdd(result3);
+
+	auto result4 = p_MirrorFeatures->MethodAdd(p_collection2, result3->GetSideFaces()->GetItem(3), true, kIdenticalCompute);
+	p_collection2->MethodAdd(result4);
+
+	p_circPatFeature->MethodAdd(
+		p_collection2,
+		p_workAxes->GetItem(2),
+		true,
+		cogCount,
+		"360",
+		true,
+		kIdenticalCompute
+	);
 
 	return;
 }
