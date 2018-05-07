@@ -62,6 +62,10 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	p_partFeatures->get_CircularPatternFeatures(&p_circPatFeature);
 	MirrorFeatures *p_MirrorFeatures;
 	p_partFeatures->get_MirrorFeatures(&p_MirrorFeatures);
+	FilletFeatures *p_FilletFeatures;
+	p_partFeatures->get_FilletFeatures(&p_FilletFeatures);
+	ChamferFeatures *p_ChamferFeatures;
+	p_partFeatures->get_ChamferFeatures(&p_ChamferFeatures);
 
 	PlanarSketch *p_sketch1;
 
@@ -108,6 +112,17 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	p_Profiles->raw__AddForSolid(&p_Profile2);
 
 	auto result1 = p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile2, mm_to_cm(thickness * 0.75), kSymmetricExtentDirection, kJoinOperation);
+
+	EdgeCollection *p_edgeCollection;
+	p_invApp->TransientObjects->raw_CreateEdgeCollection(vtMissing, &p_edgeCollection);
+
+	p_edgeCollection->raw_Add(result1->GetStartFaces()->GetItem(1)->GetEdges()->GetItem(2));
+	p_edgeCollection->raw_Add(result1->GetStartFaces()->GetItem(2)->GetEdges()->GetItem(1));
+	p_edgeCollection->raw_Add(result1->GetEndFaces()->GetItem(1)->GetEdges()->GetItem(2));
+	p_edgeCollection->raw_Add(result1->GetEndFaces()->GetItem(2)->GetEdges()->GetItem(1));
+
+	// TODO: Параметризировать длину фаски
+	p_ChamferFeatures->MethodAddUsingDistance(p_edgeCollection, mm_to_cm(2.0), false, false, false);
 
 	PlanarSketch *p_sketch3;
 
@@ -193,8 +208,8 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	points2[1] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm((outerDiameter / 2.0) + cogHeigth)), false);
 	points2[2] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(90.0 + 2.0))), mm_to_cm((outerDiameter / 2.0) + cogHeigth)), false);
 	points2[3] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(
-		mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(90.0 + 3.0))), 
-		mm_to_cm((outerDiameter / 2.0) * sin(deg_to_rad(90.0 + 3.0)))), 
+		mm_to_cm((outerDiameter / 2.0) * cos(deg_to_rad(90.0 + 4.0))), 
+		mm_to_cm((outerDiameter / 2.0) * sin(deg_to_rad(90.0 + 4.0)))), 
 	false);
 
 	p_Lines->MethodAddByTwoPoints(points2[0], points2[1]);
@@ -209,12 +224,20 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 
 	auto result3 = p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile4, mm_to_cm(thickness), kSymmetricExtentDirection, kJoinOperation);
 
+	p_edgeCollection->MethodClear();
+
+	p_edgeCollection->raw_Add(result3->GetSideFaces()->GetItem(1)->GetEdges()->GetItem(1));
+	p_edgeCollection->raw_Add(result3->GetSideFaces()->GetItem(1)->GetEdges()->GetItem(3));
+
+	auto result4 = p_FilletFeatures->MethodAddSimple(p_edgeCollection, mm_to_cm(4.0), false, false, true, false, false, false);
+
 	ObjectCollection *p_collection2;
 	p_invApp->TransientObjects->raw_CreateObjectCollection(vtMissing, &p_collection2);
 	p_collection2->MethodAdd(result3);
-
-	auto result4 = p_MirrorFeatures->MethodAdd(p_collection2, result3->GetSideFaces()->GetItem(3), true, kIdenticalCompute);
 	p_collection2->MethodAdd(result4);
+
+	auto result5 = p_MirrorFeatures->MethodAdd(p_collection2, result3->GetSideFaces()->GetItem(3), true, kIdenticalCompute);
+	p_collection2->MethodAdd(result5);
 
 	p_circPatFeature->MethodAdd(
 		p_collection2,
