@@ -1,7 +1,7 @@
 #pragma once
 
 // Построить шестерню
-void BuildGear(double, double, unsigned);
+void BuildGear(double, double, double, unsigned);
 
 // Построить вал
 void BuildShaft(double, double);
