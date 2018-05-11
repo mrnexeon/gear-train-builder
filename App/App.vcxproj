@@ -190,6 +190,9 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="AppDoc.h" />
     <ClInclude Include="AppView.h" />
+    <ClInclude Include="AssemblyTreeVier.h" />
+    <ClInclude Include="AssemblyTreeView.h" />
+    <ClInclude Include="CAssemblyTreeView.h" />
     <ClInclude Include="PartBuilders.h" />
     <ClInclude Include="Inventor.h" />
     <ClInclude Include="MainFrm.h" />
@@ -202,7 +205,10 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppDoc.cpp" />
     <ClCompile Include="AppView.cpp" />
+    <ClCompile Include="AssemblyTreeVier.cpp" />
+    <ClCompile Include="AssemblyTreeView.cpp" />
     <ClCompile Include="BearingBuilder.cpp" />
+    <ClCompile Include="CAssemblyTreeView.cpp" />
     <ClCompile Include="ShaftBuilder.cpp" />
     <ClCompile Include="GearBuilder.cpp" />
     <ClCompile Include="Inventor.cpp" />
