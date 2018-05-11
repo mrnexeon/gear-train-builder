@@ -7,4 +7,4 @@ void BuildGear(double, double, double, unsigned);
 void BuildShaft(double, double);
 
 // Построить подшипник
-void BuildBearing(double, unsigned);
+void BuildBearing(double, unsigned,double,double);
