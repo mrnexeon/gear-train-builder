@@ -53,7 +53,7 @@ void BuildShaft(double length, double diameter) {
 
 	p_TransManager->raw_StartTransaction(Doc, _T("Вал"), &p_Transaction);
 
-	int w1 = 20, w2 = 40, w3 = 60, w4 = 120, w5 = 140, w6 = 90, d1 = 50, d2 = 60, d3 = 68, d4 = 100, d5 = 70, wpz1 = 5, dp = 3;
+	int w1 = 40, w2 = 60, /*w3 = 100,*/ w6 = 130, w4 = 160, w5 = 180 , d1 = 60, d2 = 80, /*d3 = 68,*/ d4 = 100, d5 = 70, wpz1 = 2, dp = 3;
 
 	PlanarSketch *pSketch;
 	p_plannarSketches->raw_Add(p_workPlanes->GetItem(3), false, &pSketch);
@@ -71,14 +71,14 @@ void BuildShaft(double length, double diameter) {
 	point[0] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, 0), false);
 	point[1] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, d1 / 2.0), false);
 	point[2] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w1, d1 / 2.0), false);
-	point[3] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w1, d2 / 2.0), false);
-	point[4] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w2, d2 / 2.0), false);
-	point[5] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w2, d3 / 2.0), false);
-	point[6] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w3, d3 / 2.0), false);
-	point[7] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w3, d4 / 2.0), false);
-	point[8] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w6, d4 / 2.0), false);
-	point[9] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w6, d5 / 2.0), false);
-	point[10] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w4, d5 / 2.0), false);
+	point[3] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w1, d2 / 2.0), false);	/*нужен диаметр подшипника*/
+	point[4] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w2, d2 / 2.0), false);	/*нужен диаметр подшипника*/
+	point[5] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w2, (d2+6) / 2.0), false);	 
+	point[6] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w2+3, (d2+6) / 2.0), false);	
+	point[7] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w2+3, d4 / 2.0), false);	 /*подключить диаметр шестерни*/
+	point[8] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w6, d4 / 2.0), false);	 /*подключить диаметр шестерни*/
+	point[9] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w6, d5 / 2.0), false);	 /*нужен диаметр 2ого подшипника*/
+	point[10] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w4, d5 / 2.0), false);	 /*нужен диаметр 2ого подшипника*/
 	point[11] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w4, d1 / 2.0), false);
 	point[12] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w5, d1 / 2.0), false);
 	point[13] = skPoints->MethodAdd(p_TransGeom->MethodCreatePoint2d(w5, 0), false);
@@ -163,12 +163,12 @@ void BuildShaft(double length, double diameter) {
 
 
 
-	point2[0] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w3 + ((w6 - w3) / 2.0) - wpz1), 0), false);
-	point2[1] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w3 + ((w6 - w3) / 2.0) - wpz1), dp), false);   //pow-возведение в степень	
-	point2[2] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w3 + ((w6 - w3) / 2.0) - wpz1), -(dp)), false);
-	point2[3] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w3 + ((w6 - w3) / 2.0) + wpz1), 0), false);
-	point2[4] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w3 + ((w6 - w3) / 2.0) + wpz1), dp), false);
-	point2[5] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w3 + ((w6 - w3) / 2.0) + wpz1), -(dp)), false);
+	point2[0] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w2+3+(w6-w2-3)/2.0 - wpz1), 0), false);
+	point2[1] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w2+3+ (w6  - w2 - 3)/2.0 - wpz1), dp), false);
+	point2[2] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w2+3+ (w6  - w2 - 3)/2.0  - wpz1), -(dp)), false);
+	point2[3] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w2+3+ (w6  - w2 - 3)/2.0  + wpz1), 0), false);
+	point2[4] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w2+3+ (w6  - w2 - 3)/2.0  + wpz1), dp), false);
+	point2[5] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(-(w2+3+ (w6  - w2 - 3)/2.0  + wpz1), -(dp)), false);
 
 	lines2[0] = skLines2->MethodAddByTwoPoints(point2[1], point2[4]);
 	lines2[1] = skLines2->MethodAddByTwoPoints(point2[2], point2[5]);
@@ -183,7 +183,7 @@ void BuildShaft(double length, double diameter) {
 	ExtrudeFeatures *ftExtrude2;
 	p_partFeatures->get_ExtrudeFeatures(&ftExtrude2);
 
-	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, (d4 / 2) + 4, kPositiveExtentDirection, kJoinOperation);   //выдавливание на пооолную высоту
+	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, (d4 / 2) + 2, kPositiveExtentDirection, kJoinOperation);   //выдавливание на пооолную высоту
 	
 	PlanarSketch *pSketch3;
 	p_plannarSketches->raw_Add(p_workPlanes->GetItem(2), false, &pSketch3);
