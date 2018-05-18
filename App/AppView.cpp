@@ -148,5 +148,5 @@ void CAppView::OnBuildShaftRequest()
 void CAppView::OnBuildBearingRequest()
 {
 	InitializeInventor();
-	BuildBearing(100.0, 48);
+	BuildBearing(80,23,100,13);
 }
