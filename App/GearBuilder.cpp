@@ -279,5 +279,12 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 
 	p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile5, mm_to_cm(thickness), kSymmetricExtentDirection, kCutOperation);
 
+	// Сохранение детали
+	// TODO: Задавать пользовательский путь
+
+	TCHAR szDirectory[MAX_PATH];
+	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Шестерня.ipt"), false);
+
 	return;
 }
