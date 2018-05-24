@@ -190,6 +190,7 @@
     <ClInclude Include="App.h" />
     <ClInclude Include="AppDoc.h" />
     <ClInclude Include="AppView.h" />
+    <ClInclude Include="AssemblyTreeView.h" />
     <ClInclude Include="PartBuilders.h" />
     <ClInclude Include="Inventor.h" />
     <ClInclude Include="MainFrm.h" />
@@ -202,6 +203,7 @@
     <ClCompile Include="App.cpp" />
     <ClCompile Include="AppDoc.cpp" />
     <ClCompile Include="AppView.cpp" />
+    <ClCompile Include="AssemblyTreeView.cpp" />
     <ClCompile Include="BearingBuilder.cpp" />
     <ClCompile Include="ShaftBuilder.cpp" />
     <ClCompile Include="GearBuilder.cpp" />
@@ -225,8 +227,6 @@
     <Image Include="res\App.ico" />
     <Image Include="res\AppDoc.ico" />
     <Image Include="res\Toolbar.bmp" />
-    <Image Include="res\Toolbar256.bmp" />
-    <Image Include="res\userimages.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
