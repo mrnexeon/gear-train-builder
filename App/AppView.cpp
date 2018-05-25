@@ -1,12 +1,16 @@
-// AppView.cpp: —Ä–µ–∞–ª–∏–∑–∞—Ü–∏—è –∫–ª–∞—Å—Å–∞ CAppView
+
+// AppView.cpp: Â‡ÎËÁ‡ˆËˇ ÍÎ‡ÒÒ‡ CAppView
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS –º–æ–∂–Ω–æ –æ–ø—Ä–µ–¥–µ–ª–∏—Ç—å –≤ –æ–±—Ä–∞–±–æ—Ç—á–∏–∫–∞—Ö —Ñ–∏–ª—å—Ç—Ä–æ–≤ –ø—Ä–æ—Å–º–æ—Ç—Ä–∞ —Ä–µ–∞–ª–∏–∑–∞—Ü–∏–∏ –ø—Ä–æ–µ–∫—Ç–∞ ATL, —ç—Å–∫–∏–∑–æ–≤
-// –∏ –ø–æ–∏—Å–∫–∞; –ø–æ–∑–≤–æ–ª—è–µ—Ç —Å–æ–≤–º–µ—Å—Ç–Ω–æ –∏—Å–ø–æ–ª—å–∑–æ–≤–∞—Ç—å –∫–æ–¥ –¥–æ–∫—É–º–µ–Ω—Ç–∞ –≤ –¥–∞–Ω–Ω—ã–º –ø—Ä–æ–µ–∫—Ç–µ.
+// SHARED_HANDLERS ÏÓÊÌÓ ÓÔÂ‰ÂÎËÚ¸ ‚ Ó·‡·ÓÚ˜ËÍ‡ı ÙËÎ¸ÚÓ‚ ÔÓÒÏÓÚ‡ Â‡ÎËÁ‡ˆËË ÔÓÂÍÚ‡ ATL, ˝ÒÍËÁÓ‚
+// Ë ÔÓËÒÍ‡; ÔÓÁ‚ÓÎˇÂÚ ÒÓ‚ÏÂÒÚÌÓ ËÒÔÓÎ¸ÁÓ‚‡Ú¸ ÍÓ‰ ‰ÓÍÛÏÂÌÚ‡ ‚ ‰‡ÌÌ˚Ï ÔÓÂÍÚÂ.
 #ifndef SHARED_HANDLERS
 #include "App.h"
 #endif
+
+#include "PartBuilders.h"
+#include "Inventor.h"
 
 #include "AppDoc.h"
 #include "AppView.h"
@@ -15,30 +19,27 @@
 #define new DEBUG_NEW
 #endif
 
-#include "Inventor.h"
-#include "PartBuilders.h"
 
 // CAppView
 
-IMPLEMENT_DYNCREATE(CAppView, CView)
+IMPLEMENT_DYNCREATE(CAppView, CFormView)
 
-BEGIN_MESSAGE_MAP(CAppView, CView)
-	// –°—Ç–∞–Ω–¥–∞—Ä—Ç–Ω—ã–µ –∫–æ–º–∞–Ω–¥—ã –ø–µ—á–∞—Ç–∏
-	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CAppView::OnFilePrintPreview)
-	ON_WM_CONTEXTMENU()
-	ON_WM_RBUTTONUP()
-	ON_COMMAND(ID_32772, &CAppView::OnBuildGearRequest)
-	ON_COMMAND(ID_32773, &CAppView::OnBuildShaftRequest)
-	ON_COMMAND(ID_32774, &CAppView::OnBuildBearingRequest)
+BEGIN_MESSAGE_MAP(CAppView, CFormView)
+	// —Ú‡Ì‰‡ÚÌ˚Â ÍÓÏ‡Ì‰˚ ÔÂ˜‡ÚË
+	ON_COMMAND(ID_FILE_PRINT, &CFormView::OnFilePrint)
+	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CFormView::OnFilePrint)
+	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CFormView::OnFilePrintPreview)
+	ON_COMMAND(ID_32771, &CAppView::On32771)
+	ON_COMMAND(ID_32772, &CAppView::On32772)
+	ON_COMMAND(ID_32773, &CAppView::On32773)
 END_MESSAGE_MAP()
 
-// –°–æ–∑–¥–∞–Ω–∏–µ –∏–ª–∏ —É–Ω–∏—á—Ç–æ–∂–µ–Ω–∏–µ CAppView
+// —ÓÁ‰‡ÌËÂ ËÎË ÛÌË˜ÚÓÊÂÌËÂ CAppView
 
 CAppView::CAppView()
+	: CFormView(IDD_APP_FORM)
 {
-	// TODO: –¥–æ–±–∞–≤—å—Ç–µ –∫–æ–¥ —Å–æ–∑–¥–∞–Ω–∏—è
+	// TODO: ‰Ó·‡‚¸ÚÂ ÍÓ‰ ÒÓÁ‰‡ÌËˇ
 
 }
 
@@ -46,107 +47,91 @@ CAppView::~CAppView()
 {
 }
 
+void CAppView::DoDataExchange(CDataExchange* pDX)
+{
+	CFormView::DoDataExchange(pDX);
+}
+
 BOOL CAppView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: –∏–∑–º–µ–Ω–∏—Ç—å –∫–ª–∞—Å—Å Window –∏–ª–∏ —Å—Ç–∏–ª–∏ –ø–æ—Å—Ä–µ–¥—Å—Ç–≤–æ–º –∏–∑–º–µ–Ω–µ–Ω–∏—è
+	// TODO: ËÁÏÂÌËÚ¸ ÍÎ‡ÒÒ Window ËÎË ÒÚËÎË ÔÓÒÂ‰ÒÚ‚ÓÏ ËÁÏÂÌÂÌËˇ
 	//  CREATESTRUCT cs
 
-	return CView::PreCreateWindow(cs);
+	return CFormView::PreCreateWindow(cs);
 }
 
-// –†–∏—Å–æ–≤–∞–Ω–∏–µ CAppView
-
-void CAppView::OnDraw(CDC* /*pDC*/)
+void CAppView::OnInitialUpdate()
 {
-	CAppDoc* pDoc = GetDocument();
-	ASSERT_VALID(pDoc);
-	if (!pDoc)
-		return;
+	CFormView::OnInitialUpdate();
+	GetParentFrame()->RecalcLayout();
+	ResizeParentToFit();
 
-	// TODO: –¥–æ–±–∞–≤—å—Ç–µ –∑–¥–µ—Å—å –∫–æ–¥ –æ—Ç—Ä–∏—Å–æ–≤–∫–∏ –¥–ª—è —Å–æ–±—Å—Ç–≤–µ–Ω–Ω—ã—Ö –¥–∞–Ω–Ω—ã—Ö
 }
 
 
-// –ü–µ—á–∞—Ç—å CAppView
-
-
-void CAppView::OnFilePrintPreview()
-{
-#ifndef SHARED_HANDLERS
-	AFXPrintPreview(this);
-#endif
-}
+// œÂ˜‡Ú¸ CAppView
 
 BOOL CAppView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// –ø–æ–¥–≥–æ—Ç–æ–≤–∫–∞ –ø–æ —É–º–æ–ª—á–∞–Ω–∏—é
+	// ÔÓ‰„ÓÚÓ‚Í‡ ÔÓ ÛÏÓÎ˜‡ÌË˛
 	return DoPreparePrinting(pInfo);
 }
 
 void CAppView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: –¥–æ–±–∞–≤—å—Ç–µ –¥–æ–ø–æ–ª–Ω–∏—Ç–µ–ª—å–Ω—É—é –∏–Ω–∏—Ü–∏–∞–ª–∏–∑–∞—Ü–∏—é –ø–µ—Ä–µ–¥ –ø–µ—á–∞—Ç—å—é
+	// TODO: ‰Ó·‡‚¸ÚÂ ‰ÓÔÓÎÌËÚÂÎ¸ÌÛ˛ ËÌËˆË‡ÎËÁ‡ˆË˛ ÔÂÂ‰ ÔÂ˜‡Ú¸˛
 }
 
 void CAppView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: –¥–æ–±–∞–≤—å—Ç–µ –æ—á–∏—Å—Ç–∫—É –ø–æ—Å–ª–µ –ø–µ—á–∞—Ç–∏
+	// TODO: ‰Ó·‡‚¸ÚÂ Ó˜ËÒÚÍÛ ÔÓÒÎÂ ÔÂ˜‡ÚË
 }
 
-void CAppView::OnRButtonUp(UINT /* nFlags */, CPoint point)
+void CAppView::OnPrint(CDC* pDC, CPrintInfo* /*pInfo*/)
 {
-	ClientToScreen(&point);
-	OnContextMenu(this, point);
-}
-
-void CAppView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
-{
-#ifndef SHARED_HANDLERS
-	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
-#endif
+	// TODO: ‰Ó·‡‚¸ÚÂ Ò‚ÓÈ ÍÓ‰ ÔÂ˜‡ÚË
 }
 
 
-// –î–∏–∞–≥–Ω–æ—Å—Ç–∏–∫–∞ CAppView
+// ƒË‡„ÌÓÒÚËÍ‡ CAppView
 
 #ifdef _DEBUG
 void CAppView::AssertValid() const
 {
-	CView::AssertValid();
+	CFormView::AssertValid();
 }
 
 void CAppView::Dump(CDumpContext& dc) const
 {
-	CView::Dump(dc);
+	CFormView::Dump(dc);
 }
 
-CAppDoc* CAppView::GetDocument() const // –≤—Å—Ç—Ä–æ–µ–Ω–∞ –Ω–µ–æ—Ç–ª–∞–∂–µ–Ω–Ω–∞—è –≤–µ—Ä—Å–∏—è
+CAppDoc* CAppView::GetDocument() const // ‚ÒÚÓÂÌ‡ ÌÂÓÚÎ‡ÊÂÌÌ‡ˇ ‚ÂÒËˇ
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CAppDoc)));
 	return (CAppDoc*)m_pDocument;
 }
+
 #endif //_DEBUG
 
 
-// –û–±—Ä–∞–±–æ—Ç—á–∏–∫–∏ —Å–æ–æ–±—â–µ–Ω–∏–π CAppView
 
-
-void CAppView::OnBuildGearRequest()
+void CAppView::On32771()
 {
 	InitializeInventor();
 	BuildGear(400.0, 100.0, 40.0, 32, 30.0, 10.0);
 }
 
 
-void CAppView::OnBuildShaftRequest()
+void CAppView::On32772()
 {
 	InitializeInventor();
 	BuildShaft(100.0, 100.0);
 }
 
 
-void CAppView::OnBuildBearingRequest()
+void CAppView::On32773()
 {
 	InitializeInventor();
-	BuildBearing(80,23,100,13);
+	BuildBearing(80, 23, 100, 13);
 }
