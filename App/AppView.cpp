@@ -9,6 +9,8 @@
 #include "App.h"
 #endif
 
+#include "MainFrm.h"
+
 #include "PartBuilders.h"
 #include "Inventor.h"
 
@@ -66,6 +68,7 @@ void CAppView::OnInitialUpdate()
 	GetParentFrame()->RecalcLayout();
 	ResizeParentToFit();
 
+
 }
 
 
@@ -114,8 +117,6 @@ CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
 
 #endif //_DEBUG
 
-
-
 void CAppView::On32771()
 {
 	InitializeInventor();
@@ -134,4 +135,43 @@ void CAppView::On32773()
 {
 	InitializeInventor();
 	BuildBearing(80, 23, 100, 13);
+}
+void CAppView::Update()
+{
+	int selected = ((CMainFrame*)AfxGetMainWnd())->m_pTreeView->m_iSelected;
+	/*CString str;
+	str.Format(_T("%i"), selected);*/
+
+	//AfxMessageBox(str);
+	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+
+	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
+	if (selected == -1)
+	{
+		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Сборка"));
+
+	}
+
+	if (selected == 0)
+	{
+		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Вал1"));
+
+	}
+
+	if (selected == 1)
+	{
+		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Вал2"));
+
+	}
+
 }

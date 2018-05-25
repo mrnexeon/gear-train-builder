@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "App.h"
 #include "AssemblyTreeView.h"
+#include "MainFrm.h"
 
 
 // AssemblyTreeView
@@ -73,6 +74,12 @@ void CAssemblyTreeView::FillTree()
 
 	ctlTree.Expand(m_hRoot, TVE_EXPAND);
 
+	CWnd *pw = AfxGetMainWnd();
+	if (pw)
+	{
+		((CMainFrame*)pw)->m_pMainView->Update();
+	}
+
 	//ctlTree.Expand(m_hRoot, TVE_EXPAND);
 
 	/*m_hRoot = ctlTree.InsertItem(L"—борка", -1, -1, NULL, TVI_FIRST);
@@ -124,6 +131,7 @@ void CAssemblyTreeView::OnLButtonDown(UINT nFlags, CPoint point)
 	if (hItem)
 	{
 		m_iSelected = ctlTree.GetItemData(hItem);
+
 
 
 		FillTree();
