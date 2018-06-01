@@ -34,6 +34,7 @@ BEGIN_MESSAGE_MAP(CAppView, CFormView)
 	ON_COMMAND(ID_32771, &CAppView::On32771)
 	ON_COMMAND(ID_32772, &CAppView::On32772)
 	ON_COMMAND(ID_32773, &CAppView::On32773)
+	ON_COMMAND(ID_32774, &CAppView::On32774)
 END_MESSAGE_MAP()
 
 // Создание или уничтожение CAppView
@@ -174,4 +175,10 @@ void CAppView::Update()
 
 	}
 
+}
+
+
+void CAppView::On32774()
+{
+	// 
 }
