@@ -205,9 +205,9 @@
     <ClCompile Include="AppDlg.cpp" />
     <ClCompile Include="AppDoc.cpp" />
     <ClCompile Include="AppView.cpp" />
+    <ClCompile Include="AssemblyBuilder.cpp" />
     <ClCompile Include="AssemblyTreeView.cpp" />
     <ClCompile Include="BearingBuilder.cpp" />
-    <ClCompile Include="CAssemblyTreeView.cpp" />
     <ClCompile Include="ShaftBuilder.cpp" />
     <ClCompile Include="GearBuilder.cpp" />
     <ClCompile Include="Inventor.cpp" />
