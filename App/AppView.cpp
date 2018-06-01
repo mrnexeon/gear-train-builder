@@ -1,12 +1,18 @@
-// AppView.cpp: СЂРµР°Р»РёР·Р°С†РёСЏ РєР»Р°СЃСЃР° CAppView
+
+// AppView.cpp: реализация класса CAppView
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS РјРѕР¶РЅРѕ РѕРїСЂРµРґРµР»РёС‚СЊ РІ РѕР±СЂР°Р±РѕС‚С‡РёРєР°С… С„РёР»СЊС‚СЂРѕРІ РїСЂРѕСЃРјРѕС‚СЂР° СЂРµР°Р»РёР·Р°С†РёРё РїСЂРѕРµРєС‚Р° ATL, СЌСЃРєРёР·РѕРІ
-// Рё РїРѕРёСЃРєР°; РїРѕР·РІРѕР»СЏРµС‚ СЃРѕРІРјРµСЃС‚РЅРѕ РёСЃРїРѕР»СЊР·РѕРІР°С‚СЊ РєРѕРґ РґРѕРєСѓРјРµРЅС‚Р° РІ РґР°РЅРЅС‹Рј РїСЂРѕРµРєС‚Рµ.
+// SHARED_HANDLERS можно определить в обработчиках фильтров просмотра реализации проекта ATL, эскизов
+// и поиска; позволяет совместно использовать код документа в данным проекте.
 #ifndef SHARED_HANDLERS
 #include "App.h"
 #endif
+
+#include "MainFrm.h"
+
+#include "PartBuilders.h"
+#include "Inventor.h"
 
 #include "AppDoc.h"
 #include "AppView.h"
@@ -15,30 +21,27 @@
 #define new DEBUG_NEW
 #endif
 
-#include "Inventor.h"
-#include "PartBuilders.h"
 
 // CAppView
 
-IMPLEMENT_DYNCREATE(CAppView, CView)
+IMPLEMENT_DYNCREATE(CAppView, CFormView)
 
-BEGIN_MESSAGE_MAP(CAppView, CView)
-	// РЎС‚Р°РЅРґР°СЂС‚РЅС‹Рµ РєРѕРјР°РЅРґС‹ РїРµС‡Р°С‚Рё
-	ON_COMMAND(ID_FILE_PRINT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
-	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CAppView::OnFilePrintPreview)
-	ON_WM_CONTEXTMENU()
-	ON_WM_RBUTTONUP()
-	ON_COMMAND(ID_32772, &CAppView::OnBuildGearRequest)
-	ON_COMMAND(ID_32773, &CAppView::OnBuildShaftRequest)
-	ON_COMMAND(ID_32774, &CAppView::OnBuildBearingRequest)
+BEGIN_MESSAGE_MAP(CAppView, CFormView)
+	// Стандартные команды печати
+	ON_COMMAND(ID_FILE_PRINT, &CFormView::OnFilePrint)
+	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CFormView::OnFilePrint)
+	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CFormView::OnFilePrintPreview)
+	ON_COMMAND(ID_32771, &CAppView::On32771)
+	ON_COMMAND(ID_32772, &CAppView::On32772)
+	ON_COMMAND(ID_32773, &CAppView::On32773)
 END_MESSAGE_MAP()
 
-// РЎРѕР·РґР°РЅРёРµ РёР»Рё СѓРЅРёС‡С‚РѕР¶РµРЅРёРµ CAppView
+// Создание или уничтожение CAppView
 
 CAppView::CAppView()
+	: CFormView(IDD_APP_FORM)
 {
-	// TODO: РґРѕР±Р°РІСЊС‚Рµ РєРѕРґ СЃРѕР·РґР°РЅРёСЏ
+	// TODO: добавьте код создания
 
 }
 
@@ -46,107 +49,129 @@ CAppView::~CAppView()
 {
 }
 
+void CAppView::DoDataExchange(CDataExchange* pDX)
+{
+	CFormView::DoDataExchange(pDX);
+}
+
 BOOL CAppView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: РёР·РјРµРЅРёС‚СЊ РєР»Р°СЃСЃ Window РёР»Рё СЃС‚РёР»Рё РїРѕСЃСЂРµРґСЃС‚РІРѕРј РёР·РјРµРЅРµРЅРёСЏ
+	// TODO: изменить класс Window или стили посредством изменения
 	//  CREATESTRUCT cs
 
-	return CView::PreCreateWindow(cs);
+	return CFormView::PreCreateWindow(cs);
 }
 
-// Р РёСЃРѕРІР°РЅРёРµ CAppView
-
-void CAppView::OnDraw(CDC* /*pDC*/)
+void CAppView::OnInitialUpdate()
 {
-	CAppDoc* pDoc = GetDocument();
-	ASSERT_VALID(pDoc);
-	if (!pDoc)
-		return;
+	CFormView::OnInitialUpdate();
+	GetParentFrame()->RecalcLayout();
+	ResizeParentToFit();
 
-	// TODO: РґРѕР±Р°РІСЊС‚Рµ Р·РґРµСЃСЊ РєРѕРґ РѕС‚СЂРёСЃРѕРІРєРё РґР»СЏ СЃРѕР±СЃС‚РІРµРЅРЅС‹С… РґР°РЅРЅС‹С…
+
 }
 
 
-// РџРµС‡Р°С‚СЊ CAppView
-
-
-void CAppView::OnFilePrintPreview()
-{
-#ifndef SHARED_HANDLERS
-	AFXPrintPreview(this);
-#endif
-}
+// Печать CAppView
 
 BOOL CAppView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// РїРѕРґРіРѕС‚РѕРІРєР° РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
+	// подготовка по умолчанию
 	return DoPreparePrinting(pInfo);
 }
 
 void CAppView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: РґРѕР±Р°РІСЊС‚Рµ РґРѕРїРѕР»РЅРёС‚РµР»СЊРЅСѓСЋ РёРЅРёС†РёР°Р»РёР·Р°С†РёСЋ РїРµСЂРµРґ РїРµС‡Р°С‚СЊСЋ
+	// TODO: добавьте дополнительную инициализацию перед печатью
 }
 
 void CAppView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: РґРѕР±Р°РІСЊС‚Рµ РѕС‡РёСЃС‚РєСѓ РїРѕСЃР»Рµ РїРµС‡Р°С‚Рё
+	// TODO: добавьте очистку после печати
 }
 
-void CAppView::OnRButtonUp(UINT /* nFlags */, CPoint point)
+void CAppView::OnPrint(CDC* pDC, CPrintInfo* /*pInfo*/)
 {
-	ClientToScreen(&point);
-	OnContextMenu(this, point);
-}
-
-void CAppView::OnContextMenu(CWnd* /* pWnd */, CPoint point)
-{
-#ifndef SHARED_HANDLERS
-	theApp.GetContextMenuManager()->ShowPopupMenu(IDR_POPUP_EDIT, point.x, point.y, this, TRUE);
-#endif
+	// TODO: добавьте свой код печати
 }
 
 
-// Р”РёР°РіРЅРѕСЃС‚РёРєР° CAppView
+// Диагностика CAppView
 
 #ifdef _DEBUG
 void CAppView::AssertValid() const
 {
-	CView::AssertValid();
+	CFormView::AssertValid();
 }
 
 void CAppView::Dump(CDumpContext& dc) const
 {
-	CView::Dump(dc);
+	CFormView::Dump(dc);
 }
 
-CAppDoc* CAppView::GetDocument() const // РІСЃС‚СЂРѕРµРЅР° РЅРµРѕС‚Р»Р°Р¶РµРЅРЅР°СЏ РІРµСЂСЃРёСЏ
+CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CAppDoc)));
 	return (CAppDoc*)m_pDocument;
 }
+
 #endif //_DEBUG
 
-
-// РћР±СЂР°Р±РѕС‚С‡РёРєРё СЃРѕРѕР±С‰РµРЅРёР№ CAppView
-
-
-void CAppView::OnBuildGearRequest()
+void CAppView::On32771()
 {
 	InitializeInventor();
 	BuildGear(400.0, 100.0, 40.0, 32, 30.0, 10.0);
 }
 
 
-void CAppView::OnBuildShaftRequest()
+void CAppView::On32772()
 {
 	InitializeInventor();
 	BuildShaft(100.0, 100.0);
 }
 
 
-void CAppView::OnBuildBearingRequest()
+void CAppView::On32773()
 {
 	InitializeInventor();
-	BuildBearing(80,23,100,13);
+	BuildBearing(80, 23, 100, 13);
+}
+void CAppView::Update()
+{
+	int selected = ((CMainFrame*)AfxGetMainWnd())->m_pTreeView->m_iSelected;
+	/*CString str;
+	str.Format(_T("%i"), selected);*/
+
+	//AfxMessageBox(str);
+	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+
+	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
+	if (selected == -1)
+	{
+		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Сборка"));
+
+	}
+
+	if (selected == 0)
+	{
+		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Вал1"));
+
+	}
+
+	if (selected == 1)
+	{
+		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Вал2"));
+
+	}
+
 }

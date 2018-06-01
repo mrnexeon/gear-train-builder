@@ -188,6 +188,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="App.h" />
+    <ClInclude Include="AppDlg.h" />
     <ClInclude Include="AppDoc.h" />
     <ClInclude Include="AppView.h" />
     <ClInclude Include="AssemblyTreeView.h" />
@@ -201,6 +202,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="App.cpp" />
+    <ClCompile Include="AppDlg.cpp" />
     <ClCompile Include="AppDoc.cpp" />
     <ClCompile Include="AppView.cpp" />
     <ClCompile Include="AssemblyTreeView.cpp" />
