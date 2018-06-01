@@ -204,4 +204,11 @@ void BuildBearing(double indiametr, unsigned ballCount,double outdiametr, double
 		kIdenticalCompute
 	);
 	return;
+
+	// Сохранение детали
+	// TODO: Задавать пользовательский путь
+
+	TCHAR szDirectory[MAX_PATH];
+	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник.ipt"), false);
 }
