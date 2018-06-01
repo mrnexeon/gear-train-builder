@@ -3,7 +3,7 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildGear(double outerDiameter, double insideDiameter, double thickness, unsigned cogCount) {
+void BuildGear(double outerDiameter, double insideDiameter, double thickness, unsigned cogCount, double slotWidth, double slotDeep) {
 	// Указатель на документ, представляющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -248,6 +248,43 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 		true,
 		kIdenticalCompute
 	);
+
+	PlanarSketch *p_sketch5;
+
+	p_plannarSketches->raw_Add(
+		p_workPlanes->GetItem(2),
+		false,
+		&p_sketch5
+	);
+
+	p_sketch5->get_SketchLines(&p_Lines);
+	p_sketch5->get_SketchPoints(&p_Points);
+
+	SketchPointPtr points3[4];
+
+	points3[0] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(-slotWidth / 2.0), 0), false);
+	points3[1] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(slotWidth / 2.0), 0), false);
+	points3[2] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(slotWidth / 2.0), mm_to_cm((insideDiameter / 2.0) + slotDeep)), false);
+	points3[3] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(-slotWidth / 2.0), mm_to_cm((insideDiameter / 2.0) + slotDeep)), false);
+
+	p_Lines->MethodAddByTwoPoints(points3[0], points3[1]);
+	p_Lines->MethodAddByTwoPoints(points3[1], points3[2]);
+	p_Lines->MethodAddByTwoPoints(points3[2], points3[3]);
+	p_Lines->MethodAddByTwoPoints(points3[3], points3[0]);
+
+	Profile *p_Profile5;
+
+	p_sketch5->get_Profiles(&p_Profiles);
+	p_Profiles->raw__AddForSolid(&p_Profile5);
+
+	p_ExtrudeFeatures->MethodAddByDistanceExtent(p_Profile5, mm_to_cm(thickness), kSymmetricExtentDirection, kCutOperation);
+
+	// Сохранение детали
+	// TODO: Задавать пользовательский путь
+
+	TCHAR szDirectory[MAX_PATH];
+	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Шестерня.ipt"), false);
 
 	return;
 }

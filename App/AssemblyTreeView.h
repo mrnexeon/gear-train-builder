@@ -1,16 +1,13 @@
 #pragma once
-
-
-// представление CAssemblyTreeView
-
-class AssemblyTreeView : public CTreeView
+#include "afxcview.h"
+class CAssemblyTreeView : public CTreeView
 {
 	DECLARE_DYNCREATE(CAssemblyTreeView)
 
 protected:
 
-	AssemblyTreeView();           // защищенный конструктор, используемый при динамическом создании
-	virtual ~AssemblyTreeView();
+	CAssemblyTreeView();           // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+	virtual ~CAssemblyTreeView();
 
 public:
 
@@ -35,7 +32,7 @@ public:
 protected:
 	DECLARE_MESSAGE_MAP()
 public:
-	void AssemblyTreeView::FillTree();
+	void CAssemblyTreeView::FillTree();
 	afx_msg int OnCreate(LPCREATESTRUCT lpCreateStruct);
 	afx_msg void OnLButtonDown(UINT nFlags, CPoint point);
 };
