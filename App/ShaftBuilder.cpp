@@ -225,6 +225,12 @@ void BuildShaft(double length, double diameter) {
 
 	ExtrudeFeaturePtr extrude3 = ftExtrude3->MethodAddByDistanceExtent(pProfile3, (d1 / 2) + 2, kPositiveExtentDirection, kJoinOperation);
 
+	// Сохранение детали
+	// TODO: Задавать пользовательский путь
+
+	TCHAR szDirectory[MAX_PATH];
+	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Вал.ipt"), false);
 
 	return;
 }
