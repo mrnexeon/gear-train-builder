@@ -191,6 +191,7 @@
     <ClInclude Include="AppDlg.h" />
     <ClInclude Include="AppDoc.h" />
     <ClInclude Include="AppView.h" />
+    <ClInclude Include="AssemblyBuilder.h" />
     <ClInclude Include="AssemblyTreeView.h" />
     <ClInclude Include="PartBuilders.h" />
     <ClInclude Include="Inventor.h" />
