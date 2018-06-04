@@ -4,6 +4,7 @@
 #include "stdafx.h"
 #include "App.h"
 #include "AssemblyTreeView.h"
+#include "MainFrm.h"
 
 
 // AssemblyTreeView
@@ -60,8 +61,6 @@ void CAssemblyTreeView::FillTree()
 
 	HTREEITEM item;
 
-	// dsad
-
 	for (int i = 0; i < m_ComponentNames.GetSize(); i++)
 	{
 		item = ctlTree.InsertItem(m_ComponentNames[i], -1, -1, m_hRoot, TVI_LAST);
@@ -74,6 +73,12 @@ void CAssemblyTreeView::FillTree()
 	}
 
 	ctlTree.Expand(m_hRoot, TVE_EXPAND);
+
+	CWnd *pw = AfxGetMainWnd();
+	if (pw)
+	{
+		((CMainFrame*)pw)->m_pMainView->Update();
+	}
 
 	//ctlTree.Expand(m_hRoot, TVE_EXPAND);
 
@@ -126,6 +131,7 @@ void CAssemblyTreeView::OnLButtonDown(UINT nFlags, CPoint point)
 	if (hItem)
 	{
 		m_iSelected = ctlTree.GetItemData(hItem);
+
 
 
 		FillTree();

@@ -12,6 +12,7 @@
 #include "MainFrm.h"
 
 #include "PartBuilders.h"
+#include "AssemblyBuilder.h"
 #include "Inventor.h"
 
 #include "AppDoc.h"
@@ -121,7 +122,7 @@ CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
 void CAppView::On32771()
 {
 	InitializeInventor();
-	BuildGear(400.0, 100.0, 40.0, 32, 30.0, 10.0);
+	BuildGear(150.0, 100.0, 40.0, 32, 20.0, 5.0);
 }
 
 
@@ -135,7 +136,7 @@ void CAppView::On32772()
 void CAppView::On32773()
 {
 	InitializeInventor();
-	BuildBearing(80, 23, 100, 13);
+	BuildBearing(85.0, 23, 120.0, 20.0);
 }
 void CAppView::Update()
 {
@@ -180,5 +181,6 @@ void CAppView::Update()
 
 void CAppView::On32774()
 {
-	// 
+	InitializeInventor();
+	BuildAssembly();
 }
