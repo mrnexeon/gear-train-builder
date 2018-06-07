@@ -122,14 +122,14 @@ CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
 void CAppView::On32771()
 {
 	InitializeInventor();
-	BuildGear(150.0, 100.0, 40.0, 32, 20.0, 5.0);
+	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0);
 }
 
 
 void CAppView::On32772()
 {
 	InitializeInventor();
-	BuildShaft(100.0, 100.0);
+	BuildShaft(200.0, 25.0);
 }
 
 
