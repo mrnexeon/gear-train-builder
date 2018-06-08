@@ -1,10 +1,10 @@
 
-// AppView.cpp: реализация класса CAppView
+// AppView.cpp: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS можно определить в обработчиках фильтров просмотра реализации проекта ATL, эскизов
-// и поиска; позволяет совместно использовать код документа в данным проекте.
+// SHARED_HANDLERS пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ATL, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ; пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #ifndef SHARED_HANDLERS
 #include "App.h"
 #endif
@@ -28,7 +28,7 @@
 IMPLEMENT_DYNCREATE(CAppView, CFormView)
 
 BEGIN_MESSAGE_MAP(CAppView, CFormView)
-	// Стандартные команды печати
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ON_COMMAND(ID_FILE_PRINT, &CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CFormView::OnFilePrintPreview)
@@ -38,12 +38,12 @@ BEGIN_MESSAGE_MAP(CAppView, CFormView)
 	ON_COMMAND(ID_32774, &CAppView::On32774)
 END_MESSAGE_MAP()
 
-// Создание или уничтожение CAppView
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 
 CAppView::CAppView()
 	: CFormView(IDD_APP_FORM)
 {
-	// TODO: добавьте код создания
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 }
 
@@ -58,7 +58,7 @@ void CAppView::DoDataExchange(CDataExchange* pDX)
 
 BOOL CAppView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: изменить класс Window или стили посредством изменения
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Window пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//  CREATESTRUCT cs
 
 	return CFormView::PreCreateWindow(cs);
@@ -74,31 +74,31 @@ void CAppView::OnInitialUpdate()
 }
 
 
-// Печать CAppView
+// пїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 
 BOOL CAppView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// подготовка по умолчанию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return DoPreparePrinting(pInfo);
 }
 
 void CAppView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте дополнительную инициализацию перед печатью
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 void CAppView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте очистку после печати
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 void CAppView::OnPrint(CDC* pDC, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте свой код печати
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 
-// Диагностика CAppView
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 
 #ifdef _DEBUG
 void CAppView::AssertValid() const
@@ -111,7 +111,7 @@ void CAppView::Dump(CDumpContext& dc) const
 	CFormView::Dump(dc);
 }
 
-CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
+CAppDoc* CAppView::GetDocument() const // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CAppDoc)));
 	return (CAppDoc*)m_pDocument;
@@ -129,7 +129,7 @@ void CAppView::On32771()
 void CAppView::On32772()
 {
 	InitializeInventor();
-	BuildShaft(200.0, 25.0);
+	BuildShaft(100.0, 100.0, 100.0, 80.0, 30.0, 20.0);
 }
 
 
@@ -156,7 +156,7 @@ void CAppView::Update()
 	{
 		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Сборка"));
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ"));
 
 	}
 
@@ -164,7 +164,7 @@ void CAppView::Update()
 	{
 		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Вал1"));
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("пїЅпїЅпїЅ1"));
 
 	}
 
@@ -172,7 +172,7 @@ void CAppView::Update()
 	{
 		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Вал2"));
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("пїЅпїЅпїЅ2"));
 
 	}
 
