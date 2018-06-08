@@ -23,4 +23,7 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	void Update();
+	
+	afx_msg void OnEnChangeEdit3();
+	afx_msg void OnEnChangeEdit7();
 };

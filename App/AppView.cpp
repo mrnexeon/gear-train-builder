@@ -148,31 +148,56 @@ void CAppView::Update()
 	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC5)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC8)->ShowWindow(SW_HIDE);
 
 	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
-	if (selected == -1)
-	{
-		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Сборка"));
-
-	}
+	GetDlgItem(IDC_EDIT4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT5)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT8)->ShowWindow(SW_HIDE);
 
 	if (selected == 0)
 	{
+		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Внешний диаметр"));
 		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Вал1"));
-
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Количество зубьев"));
+		GetDlgItem(IDC_STATIC4)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT4)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("Ширина шестерни"));
 	}
 
 	if (selected == 1)
 	{
-		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Вал2"));
+		GetDlgItem(IDC_STATIC5)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT5)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("Ширина подшипника"));
+
+	}
+
+	if (selected == 2)
+	{
+		GetDlgItem(IDC_STATIC7)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT7)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("d0"));
+		GetDlgItem(IDC_STATIC8)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT8)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("Длинна вала"));
 
 	}
 
