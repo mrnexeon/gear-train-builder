@@ -31,6 +31,9 @@ void CAppDlg::DoDataExchange(CDataExchange* pDX)
 BEGIN_MESSAGE_MAP(CAppDlg, CDialog)
 	
 	
+	
+
+
 END_MESSAGE_MAP()
 
 
@@ -63,6 +66,11 @@ void CAppDlg::Update()
 
 	AfxMessageBox(str);
 }
+
+
+
+
+
 
 
 

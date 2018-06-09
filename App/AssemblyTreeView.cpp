@@ -15,7 +15,7 @@ CAssemblyTreeView::CAssemblyTreeView()
 {
 	m_ComponentNames.RemoveAll();
 	//m_ComponentNames.Add(L"Сборка");
-	m_ComponentNames.Add(L"Шестерня");
+	m_ComponentNames.Add(L"Зубчатая передача");
 	m_ComponentNames.Add(L"Подшипник");
 	m_ComponentNames.Add(L"Вал");
 	
