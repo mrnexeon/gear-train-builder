@@ -129,7 +129,7 @@ void CAppView::On32771()
 void CAppView::On32772()
 {
 	InitializeInventor();
-	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0);
+	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0);
 }
 
 
@@ -148,32 +148,123 @@ void CAppView::Update()
 	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC5)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC8)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC18)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC13)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC14)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC15)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC16)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC17)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC20)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC21)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC22)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC23)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC24)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC25)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC9)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC10)->ShowWindow(SW_HIDE);
+
+
+
+
 
 	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
-	if (selected == -1)
-	{
-		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("������"));
-
-	}
+	GetDlgItem(IDC_EDIT4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT5)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT8)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT14)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT15)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT16)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT17)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT20)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT21)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT9)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT10)->ShowWindow(SW_HIDE);
 
 	if (selected == 0)
 	{
+		GetDlgItem(IDC_STATIC18)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC18)->SetWindowTextW(_T("������"));
+		GetDlgItem(IDC_STATIC13)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC13)->SetWindowTextW(_T("��������"));
+		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("������� �������"));
 		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("���1"));
-
-	}
-
-	if (selected == 1)
-	{
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("���������� �������"));
 		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("���2"));
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("���������� ������"));
+		GetDlgItem(IDC_STATIC4)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT4)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("������ ��������"));
+		GetDlgItem(IDC_STATIC14)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT14)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC14)->SetWindowTextW(_T("������� �������"));
+		GetDlgItem(IDC_STATIC15)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT15)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC15)->SetWindowTextW(_T("���������� �������"));
+		GetDlgItem(IDC_STATIC16)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT16)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC16)->SetWindowTextW(_T("���������� ������"));
+		GetDlgItem(IDC_STATIC17)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT17)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC17)->SetWindowTextW(_T("������ ������"));
+	}
+	if (selected == 1)
+	{
+		GetDlgItem(IDC_STATIC5)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT5)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("���������� �������"));
+		GetDlgItem(IDC_STATIC6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("������ ����������"));
+		GetDlgItem(IDC_STATIC20)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT20)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC20)->SetWindowTextW(_T("���������� �������"));
+		GetDlgItem(IDC_STATIC21)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT21)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC21)->SetWindowTextW(_T("������ ����������"));
+		GetDlgItem(IDC_STATIC22)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC22)->SetWindowTextW(_T("������ ���������"));
+		GetDlgItem(IDC_STATIC23)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC23)->SetWindowTextW(_T("������ ���������"));
+	}
 
+	if (selected == 2)
+	{
+		GetDlgItem(IDC_STATIC7)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT7)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("�����-�� �������"));
+		GetDlgItem(IDC_STATIC8)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT8)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("������ ����"));
+		GetDlgItem(IDC_STATIC24)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC24)->SetWindowTextW(_T("������ ���"));
+		GetDlgItem(IDC_STATIC25)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC25)->SetWindowTextW(_T("������ ���"));
+		GetDlgItem(IDC_STATIC9)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT9)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC9)->SetWindowTextW(_T("�����-�� �������"));
+		GetDlgItem(IDC_STATIC10)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT10)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC10)->SetWindowTextW(_T("������ ����"));
 	}
 
 }

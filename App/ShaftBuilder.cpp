@@ -3,7 +3,7 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/) {
+void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap) {
 	// ”казатель на документ, представл€ющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -56,7 +56,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 
 	//double w1 = length1, w2 = length2, /*w3 = 100,*/ w6 = 130, w4 = 160, w5 = 180 , d1 = diametrBearing -20, d2 = diametrBearing, /*d3 = 68,*/ d4 = diameterGear, d5 = diametrBearing -10, wpz1 = 2, dp = 3;
 
-	double dp = 1, wpz1 = lengthGear / 3.f, wpz2 = 30 / 5;
+	double dp=1, wpz1 = lengthGear / 3.f, wpz2 = 30 / 5;
 	PlanarSketch *pSketch;
 	p_plannarSketches->raw_Add(p_workPlanes->GetItem(3), false, &pSketch);
 	SketchPointPtr point[15];
@@ -332,11 +332,11 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 	//eto u nas shponka na osnovnom otseke
 	double lengthbrevna;
 	point2[0] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm (- wpz1), 0), false);
-	point2[1] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm (- wpz1), (dp)), false);
-	point2[2] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm (- wpz1),  (-(dp))), false);
+	point2[1] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm (- wpz1), (slotWidth/20.f)), false);
+	point2[2] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm (- wpz1),  (-(slotWidth/20.f))), false);
 	point2[3] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm ( wpz1), 0), false);
-	point2[4] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm ( wpz1), (dp)), false);
-	point2[5] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm ( wpz1),  (-(dp))), false);
+	point2[4] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm ( wpz1), (slotWidth/20.f)), false);
+	point2[5] = skPoints2->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm ( wpz1),  (-(slotWidth/20.f))), false);
 
 	lines2[0] = skLines2->MethodAddByTwoPoints(point2[1], point2[4]);
 	lines2[1] = skLines2->MethodAddByTwoPoints(point2[2], point2[5]);
@@ -351,7 +351,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 	ExtrudeFeatures *ftExtrude2;
 	p_partFeatures->get_ExtrudeFeatures(&ftExtrude2);
 
-	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + 3), kPositiveExtentDirection, kJoinOperation);   //выдавливание на пооолную высоту
+	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + slotDeap), kPositiveExtentDirection, kJoinOperation);   //выдавливание на пооолную высоту
 	
 	
 	// —охранение детали
