@@ -148,32 +148,123 @@ void CAppView::Update()
 	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC5)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC8)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC18)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC13)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC14)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC15)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC16)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC17)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC20)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC21)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC22)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC23)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC24)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC25)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC9)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC10)->ShowWindow(SW_HIDE);
+
+
+
+
 
 	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
-	if (selected == -1)
-	{
-		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Сборка"));
-
-	}
+	GetDlgItem(IDC_EDIT4)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT5)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT6)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT7)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT8)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT1)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT2)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT3)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT14)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT15)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT16)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT17)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT20)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT21)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT9)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT10)->ShowWindow(SW_HIDE);
 
 	if (selected == 0)
 	{
+		GetDlgItem(IDC_STATIC18)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC18)->SetWindowTextW(_T("Колесо"));
+		GetDlgItem(IDC_STATIC13)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC13)->SetWindowTextW(_T("Шестерня"));
+		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Внешний диаметр"));
 		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Вал1"));
-
-	}
-
-	if (selected == 1)
-	{
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Внутренний диаметр"));
 		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Вал2"));
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Количество зубьев"));
+		GetDlgItem(IDC_STATIC4)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT4)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("Ширина шестерни"));
+		GetDlgItem(IDC_STATIC14)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT14)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC14)->SetWindowTextW(_T("Внешний диаметр"));
+		GetDlgItem(IDC_STATIC15)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT15)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC15)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC16)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT16)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC16)->SetWindowTextW(_T("Количество зубьев"));
+		GetDlgItem(IDC_STATIC17)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT17)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC17)->SetWindowTextW(_T("Ширина колеса"));
+	}
+	if (selected == 1)
+	{
+		GetDlgItem(IDC_STATIC5)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT5)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT6)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("Ширина подшипника"));
+		GetDlgItem(IDC_STATIC20)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT20)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC20)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC21)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT21)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC21)->SetWindowTextW(_T("Ширина подшипника"));
+		GetDlgItem(IDC_STATIC22)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC22)->SetWindowTextW(_T("Первый подшипник"));
+		GetDlgItem(IDC_STATIC23)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC23)->SetWindowTextW(_T("Второй подшипник"));
+	}
 
+	if (selected == 2)
+	{
+		GetDlgItem(IDC_STATIC7)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT7)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("Какой-то диаметр"));
+		GetDlgItem(IDC_STATIC8)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT8)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("Длинна вала"));
+		GetDlgItem(IDC_STATIC24)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC24)->SetWindowTextW(_T("Второй вал"));
+		GetDlgItem(IDC_STATIC25)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC25)->SetWindowTextW(_T("Первый вал"));
+		GetDlgItem(IDC_STATIC9)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT9)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC9)->SetWindowTextW(_T("Какой-то диаметр"));
+		GetDlgItem(IDC_STATIC10)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT10)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC10)->SetWindowTextW(_T("Длинна вала"));
 	}
 
 }
