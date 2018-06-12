@@ -130,9 +130,9 @@ void CAppView::On32771()
 void CAppView::On32772()
 {
 	InitializeInventor();
+
 	BuildShaft(100.0, 125.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1);
 	BuildShaft(200.0, 250.0, 200.0, 100.0, 50.0, 20.0, 30.0, 10.0, 2);
-
 }
 
 void CAppView::On32773()
