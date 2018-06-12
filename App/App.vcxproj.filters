@@ -114,5 +114,26 @@
     <Image Include="res\Toolbar.bmp">
       <Filter>Файлы ресурсов</Filter>
     </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\Shesterenka_i_koleso.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\Podshipnik.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\Val.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\Izometria.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\Izometria (2).bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\izometria__2_.g2OyH.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
+    <Image Include="C:\Users\Bydmak\Downloads\izometria__2_.bmp">
+      <Filter>Файлы ресурсов</Filter>
+    </Image>
   </ItemGroup>
 </Project>
