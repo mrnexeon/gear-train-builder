@@ -122,16 +122,18 @@ CAppDoc* CAppView::GetDocument() const // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï
 void CAppView::On32771()
 {
 	InitializeInventor();
-	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0);
-}
+	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0, 1);
+	BuildGear(800.0, 200.0, 40.0, 42, 30.0, 10.0, 2);
 
+}
 
 void CAppView::On32772()
 {
 	InitializeInventor();
-	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0);
-}
+	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1);
+	BuildShaft(100.0, 200.0, 200.0, 100.0, 30.0, 20.0, 30.0, 10.0, 2);
 
+}
 
 void CAppView::On32773()
 {
