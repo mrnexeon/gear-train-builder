@@ -184,7 +184,7 @@ void BuildBearing(double indiametr, double outdiametr, double B) {
 		p_collection1,
 		p_workAxes->GetItem(1),
 		true,
-		N,
+		N-1,
 		"360",
 		true,
 		kIdenticalCompute
@@ -194,7 +194,7 @@ void BuildBearing(double indiametr, double outdiametr, double B) {
 	// Сохранение детали
 	// TODO: Задавать пользовательский путь
 
-	//TCHAR szDirectory[MAX_PATH];
-	//::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	//p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник.ipt"), false);
+	TCHAR szDirectory[MAX_PATH];
+	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник.ipt"), false);
 }
