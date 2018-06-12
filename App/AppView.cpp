@@ -123,22 +123,24 @@ void CAppView::On32771()
 {
 	InitializeInventor();
 	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0, 1);
-	BuildGear(800.0, 200.0, 40.0, 42, 30.0, 10.0, 2);
+	BuildGear(800.0, 200.0, 40.0, 36, 30.0, 10.0, 2);
 
 }
 
 void CAppView::On32772()
 {
 	InitializeInventor();
-	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1);
-	BuildShaft(100.0, 200.0, 200.0, 100.0, 30.0, 20.0, 30.0, 10.0, 2);
+	BuildShaft(100.0, 125.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1);
+	BuildShaft(200.0, 250.0, 200.0, 100.0, 50.0, 20.0, 30.0, 10.0, 2);
 
 }
 
 void CAppView::On32773()
 {
 	InitializeInventor();
-	BuildBearing(85,120, 20);
+	BuildBearing(80.0,120.0, 20, 1);
+	BuildBearing(100.0, 150.0, 26, 2);
+
 }
 void CAppView::Update()
 {
