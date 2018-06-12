@@ -138,7 +138,7 @@ void CAppView::On32772()
 void CAppView::On32773()
 {
 	InitializeInventor();
-	BuildBearing(85.0, 23, 120.0, 20.0);
+	BuildBearing(85,120, 20);
 }
 void CAppView::Update()
 {
