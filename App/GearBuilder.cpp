@@ -3,7 +3,7 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildGear(double outerDiameter, double insideDiameter, double thickness, unsigned cogCount, double slotWidth, double slotDeep) {
+void BuildGear(double outerDiameter, double insideDiameter, double thickness, unsigned cogCount, double slotWidth, double slotDeep, int index) {
 	// ”казатель на документ, представл€ющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -284,7 +284,7 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 
 	TCHAR szDirectory[MAX_PATH];
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\—борка\\Ўестерн€.ipt"), false);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\—борка\\Ўестерн€") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
 	return;
 }

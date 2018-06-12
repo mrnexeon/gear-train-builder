@@ -94,10 +94,6 @@ void CAssemblyTreeView::FillTree()
 	m_hComponent3 = ctlTree.InsertItem(L"Компонент3", m_hRoot, TVI_LAST);
 	ctlTree.SetItemData(m_hComponent3, 3);*/
 
-
-
-
-
 }
 
 int CAssemblyTreeView::OnCreate(LPCREATESTRUCT lpCreateStruct)

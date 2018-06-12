@@ -1,10 +1,10 @@
 
-// AppView.cpp: реализация класса CAppView
+// AppView.cpp: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS можно определить в обработчиках фильтров просмотра реализации проекта ATL, эскизов
-// и поиска; позволяет совместно использовать код документа в данным проекте.
+// SHARED_HANDLERS пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ ATL, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+// пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ; пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ.
 #ifndef SHARED_HANDLERS
 #include "App.h"
 #endif
@@ -28,7 +28,7 @@
 IMPLEMENT_DYNCREATE(CAppView, CFormView)
 
 BEGIN_MESSAGE_MAP(CAppView, CFormView)
-	// Стандартные команды печати
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 	ON_COMMAND(ID_FILE_PRINT, &CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CFormView::OnFilePrintPreview)
@@ -38,12 +38,12 @@ BEGIN_MESSAGE_MAP(CAppView, CFormView)
 	ON_COMMAND(ID_32774, &CAppView::On32774)
 END_MESSAGE_MAP()
 
-// Создание или уничтожение CAppView
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 
 CAppView::CAppView()
 	: CFormView(IDD_APP_FORM)
 {
-	// TODO: добавьте код создания
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 
 }
 
@@ -58,7 +58,7 @@ void CAppView::DoDataExchange(CDataExchange* pDX)
 
 BOOL CAppView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: изменить класс Window или стили посредством изменения
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ Window пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	//  CREATESTRUCT cs
 
 	return CFormView::PreCreateWindow(cs);
@@ -74,31 +74,31 @@ void CAppView::OnInitialUpdate()
 }
 
 
-// Печать CAppView
+// пїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 
 BOOL CAppView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// подготовка по умолчанию
+	// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 	return DoPreparePrinting(pInfo);
 }
 
 void CAppView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте дополнительную инициализацию перед печатью
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 void CAppView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте очистку после печати
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 void CAppView::OnPrint(CDC* pDC, CPrintInfo* /*pInfo*/)
 {
-	// TODO: добавьте свой код печати
+	// TODO: пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 }
 
 
-// Диагностика CAppView
+// пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ CAppView
 
 #ifdef _DEBUG
 void CAppView::AssertValid() const
@@ -111,7 +111,7 @@ void CAppView::Dump(CDumpContext& dc) const
 	CFormView::Dump(dc);
 }
 
-CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
+CAppDoc* CAppView::GetDocument() const // пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CAppDoc)));
 	return (CAppDoc*)m_pDocument;
@@ -122,16 +122,18 @@ CAppDoc* CAppView::GetDocument() const // встроена неотлаженная версия
 void CAppView::On32771()
 {
 	InitializeInventor();
-	BuildGear(150.0, 100.0, 40.0, 32, 20.0, 5.0);
-}
+	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0, 1);
+	BuildGear(800.0, 200.0, 40.0, 42, 30.0, 10.0, 2);
 
+}
 
 void CAppView::On32772()
 {
 	InitializeInventor();
-	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0);
-}
+	BuildShaft(60.0, 100.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1);
+	BuildShaft(100.0, 200.0, 200.0, 100.0, 30.0, 20.0, 30.0, 10.0, 2);
 
+}
 
 void CAppView::On32773()
 {
@@ -199,72 +201,72 @@ void CAppView::Update()
 	if (selected == 0)
 	{
 		GetDlgItem(IDC_STATIC18)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC18)->SetWindowTextW(_T("Колесо"));
+		GetDlgItem(IDC_STATIC18)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC13)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC13)->SetWindowTextW(_T("Шестерня"));
+		GetDlgItem(IDC_STATIC13)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Внешний диаметр"));
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Количество зубьев"));
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC4)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT4)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("Ширина шестерни"));
+		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC14)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT14)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC14)->SetWindowTextW(_T("Внешний диаметр"));
+		GetDlgItem(IDC_STATIC14)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC15)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT15)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC15)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC15)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC16)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT16)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC16)->SetWindowTextW(_T("Количество зубьев"));
+		GetDlgItem(IDC_STATIC16)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC17)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT17)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC17)->SetWindowTextW(_T("Ширина колеса"));
+		GetDlgItem(IDC_STATIC17)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ"));
 	}
 	if (selected == 1)
 	{
 		GetDlgItem(IDC_STATIC5)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT5)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC6)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT6)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("Ширина подшипника"));
+		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC20)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT20)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC20)->SetWindowTextW(_T("Внутренний диаметр"));
+		GetDlgItem(IDC_STATIC20)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC21)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT21)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC21)->SetWindowTextW(_T("Ширина подшипника"));
+		GetDlgItem(IDC_STATIC21)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC22)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC22)->SetWindowTextW(_T("Первый подшипник"));
+		GetDlgItem(IDC_STATIC22)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC23)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC23)->SetWindowTextW(_T("Второй подшипник"));
+		GetDlgItem(IDC_STATIC23)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 	}
 
 	if (selected == 2)
 	{
 		GetDlgItem(IDC_STATIC7)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT7)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("Какой-то диаметр"));
+		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC8)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT8)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("Длинна вала"));
+		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC24)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC24)->SetWindowTextW(_T("Второй вал"));
+		GetDlgItem(IDC_STATIC24)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC25)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC25)->SetWindowTextW(_T("Первый вал"));
+		GetDlgItem(IDC_STATIC25)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC9)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT9)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC9)->SetWindowTextW(_T("Какой-то диаметр"));
+		GetDlgItem(IDC_STATIC9)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅ-пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ"));
 		GetDlgItem(IDC_STATIC10)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT10)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC10)->SetWindowTextW(_T("Длинна вала"));
+		GetDlgItem(IDC_STATIC10)->SetWindowTextW(_T("пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ"));
 	}
 
 }

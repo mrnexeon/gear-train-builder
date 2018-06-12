@@ -3,7 +3,7 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap) {
+void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index) {
 	// ”казатель на документ, представл€ющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -359,7 +359,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 
 	TCHAR szDirectory[MAX_PATH];
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\—борка\\¬ал.ipt"), false);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\—борка\\¬ал") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
 	return;
 }
