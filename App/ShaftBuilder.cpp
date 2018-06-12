@@ -3,12 +3,16 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index) {
-
+bool BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index) {
+	
 	if ((length1 + length2 - 3 - lengthBearing) < lengthGear) {
 		MessageBox(NULL, _T("Íåêóäà ñàæàòü êîëåñî/øåñòåðíþ!"), _T("Error"), MB_OK);
 		return false;
-															  
+	}
+	if ( diameterGear-3 > diameterBearing) {
+		MessageBox(NULL, _T("Подшипник слишком здоровый!"), _T("Error"), MB_OK);
+		return false;
+	}
 	// Óêàçàòåëü íà äîêóìåíò, ïðåäñòàâëÿþùèé äåòàëü
 	PartDocumentPtr p_PartDocumnet;
 
