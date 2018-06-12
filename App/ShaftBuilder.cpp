@@ -3,57 +3,53 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-bool BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap) {
-	
+void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index) {
+
 	if ((length1 + length2 - 3 - lengthBearing) < lengthGear) {
-		MessageBox(NULL, _T("Íåêóäà ñàæàòü êîëåñî/øåñòåðíþ!"), _T("Error"), MB_OK);
+		MessageBox(NULL, _T("ÃÃ¥ÃªÃ³Ã¤Ã  Ã±Ã Ã¦Ã Ã²Ã¼ ÃªÃ®Ã«Ã¥Ã±Ã®/Ã¸Ã¥Ã±Ã²Ã¥Ã°Ã­Ã¾!"), _T("Error"), MB_OK);
 		return false;
-															  }
-
-
-	
-	
-	// Óêàçàòåëü íà äîêóìåíò, ïðåäñòàâëÿþùèé äåòàëü
+															  
+	// Ã“ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã¤Ã®ÃªÃ³Ã¬Ã¥Ã­Ã², Ã¯Ã°Ã¥Ã¤Ã±Ã²Ã Ã¢Ã«Ã¿Ã¾Ã¹Ã¨Ã© Ã¤Ã¥Ã²Ã Ã«Ã¼
 	PartDocumentPtr p_PartDocumnet;
 
-	// Óêàçàòåëü íà äåòàëü è åå ñîäåðæèìîå (ýñêèçû, îñè è ò.ä.)
+	// Ã“ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã¤Ã¥Ã²Ã Ã«Ã¼ Ã¨ Ã¥Ã¥ Ã±Ã®Ã¤Ã¥Ã°Ã¦Ã¨Ã¬Ã®Ã¥ (Ã½Ã±ÃªÃ¨Ã§Ã», Ã®Ã±Ã¨ Ã¨ Ã².Ã¤.)
 	PartComponentDefinition *p_PartComponentDef;
 
-	// Óêàçàòåëü íà ìåíåäæåð ïî ïîñòðîåíèþ ãåîìåòðèè
+	// Ã“ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã¬Ã¥Ã­Ã¥Ã¤Ã¦Ã¥Ã° Ã¯Ã® Ã¯Ã®Ã±Ã²Ã°Ã®Ã¥Ã­Ã¨Ã¾ Ã£Ã¥Ã®Ã¬Ã¥Ã²Ã°Ã¨Ã¨
 	TransientGeometry *p_TransGeom;
 
-	// Óêàçàòåëü íà ìåíåäæåð ïî ïîñòðîåíèþ äåòàëè
+	// Ã“ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  Ã¬Ã¥Ã­Ã¥Ã¤Ã¦Ã¥Ã° Ã¯Ã® Ã¯Ã®Ã±Ã²Ã°Ã®Ã¥Ã­Ã¨Ã¾ Ã¤Ã¥Ã²Ã Ã«Ã¨
 	TransactionManagerPtr p_TransManager;
 
-	// Îáúåêò ïðåäñòàâëåíèÿ õîäà äåòàëè
+	// ÃŽÃ¡ÃºÃ¥ÃªÃ² Ã¯Ã°Ã¥Ã¤Ã±Ã²Ã Ã¢Ã«Ã¥Ã­Ã¨Ã¿ ÃµÃ®Ã¤Ã  Ã¤Ã¥Ã²Ã Ã«Ã¨
 	Transaction *p_Transaction;
 
-	Document *Doc; // Ôàéë ïðîåêòà â Inventor
-	PlanarSketches *p_plannarSketches; // Ýñêèçû
-	WorkPlanes *p_workPlanes; // Ðàáî÷èå ïëîñêîñòè
-	PartFeatures *p_partFeatures; // Èíñòðóìåíòû
-	WorkAxes *p_workAxes; // Îñè
-	WorkPoints *p_workPoints; // Òî÷êè
+	Document *Doc; // Ã”Ã Ã©Ã« Ã¯Ã°Ã®Ã¥ÃªÃ²Ã  Ã¢ Inventor
+	PlanarSketches *p_plannarSketches; // ÃÃ±ÃªÃ¨Ã§Ã»
+	WorkPlanes *p_workPlanes; // ÃÃ Ã¡Ã®Ã·Ã¨Ã¥ Ã¯Ã«Ã®Ã±ÃªÃ®Ã±Ã²Ã¨
+	PartFeatures *p_partFeatures; // ÃˆÃ­Ã±Ã²Ã°Ã³Ã¬Ã¥Ã­Ã²Ã»
+	WorkAxes *p_workAxes; // ÃŽÃ±Ã¨
+	WorkPoints *p_workPoints; // Ã’Ã®Ã·ÃªÃ¨
 
-	p_PartDocumnet = p_invApp->Documents->MethodAdd( // Ñîçäàíèå äåòàëè
+	p_PartDocumnet = p_invApp->Documents->MethodAdd( // Ã‘Ã®Ã§Ã¤Ã Ã­Ã¨Ã¥ Ã¤Ã¥Ã²Ã Ã«Ã¨
 		kPartDocumentObject,
 		p_invApp->FileManager->MethodGetTemplateFile(
 			kPartDocumentObject,
-			kMetricSystemOfMeasure, // Ìåòðè÷åñêàÿ ÑÈ
+			kMetricSystemOfMeasure, // ÃŒÃ¥Ã²Ã°Ã¨Ã·Ã¥Ã±ÃªÃ Ã¿ Ã‘Ãˆ
 			kGOST_DraftingStandard),
 		true
 	);
 
-	p_PartDocumnet->DisplayName = _T("Âàë"); // Íàçâàíèå äåòàëè
+	p_PartDocumnet->DisplayName = _T("Ã‚Ã Ã«"); // ÃÃ Ã§Ã¢Ã Ã­Ã¨Ã¥ Ã¤Ã¥Ã²Ã Ã«Ã¨
 
-	// Èíèöèàëèçàöèÿ óêàçàòåëåé
+	// ÃˆÃ­Ã¨Ã¶Ã¨Ã Ã«Ã¨Ã§Ã Ã¶Ã¨Ã¿ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¥Ã©
 
 	p_TransManager = p_invApp->GetTransactionManager();
 	p_invApp->get_TransientGeometry(&p_TransGeom);
 	Doc = CComQIPtr<Document>(p_PartDocumnet); 
 	p_PartDocumnet->get_ComponentDefinition(&p_PartComponentDef);
 
-	// Èíèöèàëèçàöèÿ óêàçàòåëåé íà ñîäåðæèìîå äåòàëè
+	// ÃˆÃ­Ã¨Ã¶Ã¨Ã Ã«Ã¨Ã§Ã Ã¶Ã¨Ã¿ Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¥Ã© Ã­Ã  Ã±Ã®Ã¤Ã¥Ã°Ã¦Ã¨Ã¬Ã®Ã¥ Ã¤Ã¥Ã²Ã Ã«Ã¨
 
 	p_PartComponentDef->get_Sketches(&p_plannarSketches);
 	p_PartComponentDef->get_WorkPlanes(&p_workPlanes);
@@ -61,7 +57,7 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 	p_PartComponentDef->get_WorkAxes(&p_workAxes);
 	p_PartComponentDef->get_WorkPoints(&p_workPoints);
 
-	p_TransManager->raw_StartTransaction(Doc, _T("Âàë"), &p_Transaction);
+	p_TransManager->raw_StartTransaction(Doc, _T("Ã‚Ã Ã«"), &p_Transaction);
 
 	//double w1 = length1, w2 = length2, /*w3 = 100,*/ w6 = 130, w4 = 160, w5 = 180 , d1 = diametrBearing -20, d2 = diametrBearing, /*d3 = 68,*/ d4 = diameterGear, d5 = diametrBearing -10, wpz1 = 2, dp = 3;
 
@@ -121,12 +117,12 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 		skProfiles->raw__AddForSolid(&pProfile);
 
 		RevolveFeatures *ftRevolve;
-		p_partFeatures->get_RevolveFeatures(&ftRevolve); //óêàçàòåëü íà êîëëåêöèþ âðàùåíèé â äîêóìåíòå
+		p_partFeatures->get_RevolveFeatures(&ftRevolve); //Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  ÃªÃ®Ã«Ã«Ã¥ÃªÃ¶Ã¨Ã¾ Ã¢Ã°Ã Ã¹Ã¥Ã­Ã¨Ã© Ã¢ Ã¤Ã®ÃªÃ³Ã¬Ã¥Ã­Ã²Ã¥
 
-		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //âðàùàåì ñåé ÷åðò¸æ
+		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //Ã¢Ã°Ã Ã¹Ã Ã¥Ã¬ Ã±Ã¥Ã© Ã·Ã¥Ã°Ã²Â¸Ã¦
 
 
-		FilletFeatures *pFilletFt;  //ïîðîæäåíèå ñãëàæèâàíèé
+		FilletFeatures *pFilletFt;  //Ã¯Ã®Ã°Ã®Ã¦Ã¤Ã¥Ã­Ã¨Ã¥ Ã±Ã£Ã«Ã Ã¦Ã¨Ã¢Ã Ã­Ã¨Ã©
 		p_partFeatures->get_FilletFeatures(&pFilletFt);
 
 		EdgeCollection *edgeColl;
@@ -187,7 +183,7 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 		lines3[1] = skLines3->MethodAddByTwoPoints(point3[2], point3[5]);
 
 
-		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //ïîðîæäåíèå äóãè ÷åðåç öåíòð è 2 òî÷êè
+		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //Ã¯Ã®Ã°Ã®Ã¦Ã¤Ã¥Ã­Ã¨Ã¥ Ã¤Ã³Ã£Ã¨ Ã·Ã¥Ã°Ã¥Ã§ Ã¶Ã¥Ã­Ã²Ã° Ã¨ 2 Ã²Ã®Ã·ÃªÃ¨
 		arcs3[1] = skArcs3->MethodAddByCenterStartEndPoint(point3[3], point3[4], point3[5], false);
 
 		Profile *pProfile3;
@@ -241,12 +237,12 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 		skProfiles->raw__AddForSolid(&pProfile);
 
 		RevolveFeatures *ftRevolve;
-		p_partFeatures->get_RevolveFeatures(&ftRevolve); //óêàçàòåëü íà êîëëåêöèþ âðàùåíèé â äîêóìåíòå
+		p_partFeatures->get_RevolveFeatures(&ftRevolve); //Ã³ÃªÃ Ã§Ã Ã²Ã¥Ã«Ã¼ Ã­Ã  ÃªÃ®Ã«Ã«Ã¥ÃªÃ¶Ã¨Ã¾ Ã¢Ã°Ã Ã¹Ã¥Ã­Ã¨Ã© Ã¢ Ã¤Ã®ÃªÃ³Ã¬Ã¥Ã­Ã²Ã¥
 
-		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //âðàùàåì ñåé ÷åðò¸æ
+		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //Ã¢Ã°Ã Ã¹Ã Ã¥Ã¬ Ã±Ã¥Ã© Ã·Ã¥Ã°Ã²Â¸Ã¦
 
 
-		FilletFeatures *pFilletFt;  //ïîðîæäåíèå ñãëàæèâàíèé
+		FilletFeatures *pFilletFt;  //Ã¯Ã®Ã°Ã®Ã¦Ã¤Ã¥Ã­Ã¨Ã¥ Ã±Ã£Ã«Ã Ã¦Ã¨Ã¢Ã Ã­Ã¨Ã©
 		p_partFeatures->get_FilletFeatures(&pFilletFt);
 
 		EdgeCollection *edgeColl;
@@ -307,7 +303,7 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 		lines3[1] = skLines3->MethodAddByTwoPoints(point3[2], point3[5]);
 
 
-		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //ïîðîæäåíèå äóãè ÷åðåç öåíòð è 2 òî÷êè
+		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //Ã¯Ã®Ã°Ã®Ã¦Ã¤Ã¥Ã­Ã¨Ã¥ Ã¤Ã³Ã£Ã¨ Ã·Ã¥Ã°Ã¥Ã§ Ã¶Ã¥Ã­Ã²Ã° Ã¨ 2 Ã²Ã®Ã·ÃªÃ¨
 		arcs3[1] = skArcs3->MethodAddByCenterStartEndPoint(point3[3], point3[4], point3[5], false);
 
 		Profile *pProfile3;
@@ -351,7 +347,7 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 	lines2[1] = skLines2->MethodAddByTwoPoints(point2[2], point2[5]);
 
 
-	arcs2[0] = skArcs->MethodAddByCenterStartEndPoint(point2[0], point2[1], point2[2], true);    //ïîðîæäåíèå äóãè ÷åðåç öåíòð è 2 òî÷êè
+	arcs2[0] = skArcs->MethodAddByCenterStartEndPoint(point2[0], point2[1], point2[2], true);    //Ã¯Ã®Ã°Ã®Ã¦Ã¤Ã¥Ã­Ã¨Ã¥ Ã¤Ã³Ã£Ã¨ Ã·Ã¥Ã°Ã¥Ã§ Ã¶Ã¥Ã­Ã²Ã° Ã¨ 2 Ã²Ã®Ã·ÃªÃ¨
 	arcs2[1] = skArcs->MethodAddByCenterStartEndPoint(point2[3], point2[4], point2[5], false);
 
 	Profile *pProfile2;
@@ -360,15 +356,15 @@ bool BuildShaft(double length1,double length2, double diameterGear, double diame
 	ExtrudeFeatures *ftExtrude2;
 	p_partFeatures->get_ExtrudeFeatures(&ftExtrude2);
 
-	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + slotDeap), kPositiveExtentDirection, kJoinOperation);   //âûäàâëèâàíèå íà ïîîîëíóþ âûñîòó
+	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + slotDeap), kPositiveExtentDirection, kJoinOperation);   //Ã¢Ã»Ã¤Ã Ã¢Ã«Ã¨Ã¢Ã Ã­Ã¨Ã¥ Ã­Ã  Ã¯Ã®Ã®Ã®Ã«Ã­Ã³Ã¾ Ã¢Ã»Ã±Ã®Ã²Ã³
 	
 	
-	// Ñîõðàíåíèå äåòàëè
-	// TODO: Çàäàâàòü ïîëüçîâàòåëüñêèé ïóòü
+	// Ã‘Ã®ÃµÃ°Ã Ã­Ã¥Ã­Ã¨Ã¥ Ã¤Ã¥Ã²Ã Ã«Ã¨
+	// TODO: Ã‡Ã Ã¤Ã Ã¢Ã Ã²Ã¼ Ã¯Ã®Ã«Ã¼Ã§Ã®Ã¢Ã Ã²Ã¥Ã«Ã¼Ã±ÃªÃ¨Ã© Ã¯Ã³Ã²Ã¼
 
 	TCHAR szDirectory[MAX_PATH];
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Ñáîðêà\\Âàë.ipt"), false);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Ã‘Ã¡Ã®Ã°ÃªÃ \\Ã‚Ã Ã«") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
 	return true;
 }

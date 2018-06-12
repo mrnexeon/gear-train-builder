@@ -15,10 +15,10 @@ CAssemblyTreeView::CAssemblyTreeView()
 {
 	m_ComponentNames.RemoveAll();
 	//m_ComponentNames.Add(L"Сборка");
-	m_ComponentNames.Add(L"Компонент1");
-	m_ComponentNames.Add(L"Компонент2");
-	m_ComponentNames.Add(L"Компонент3");
-	m_ComponentNames.Add(L"Компонент4");
+	m_ComponentNames.Add(L"Зубчатая передача");
+	m_ComponentNames.Add(L"Подшипник");
+	m_ComponentNames.Add(L"Вал");
+	
 }
 
 CAssemblyTreeView::~CAssemblyTreeView()
@@ -93,10 +93,6 @@ void CAssemblyTreeView::FillTree()
 
 	m_hComponent3 = ctlTree.InsertItem(L"Компонент3", m_hRoot, TVI_LAST);
 	ctlTree.SetItemData(m_hComponent3, 3);*/
-
-
-
-
 
 }
 

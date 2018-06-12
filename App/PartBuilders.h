@@ -1,10 +1,11 @@
 #pragma once
 
-// Построить шестерню
-void BuildGear(double, double, double, unsigned, double, double);
+// ГЏГ®Г±ГІГ°Г®ГЁГІГј ГёГҐГ±ГІГҐГ°Г­Гѕ
+void BuildGear(double, double, double, unsigned, double, double, int);
 
-// Построить вал
-bool BuildShaft(double, double, double, double, double, double, double, double);
+// ГЏГ®Г±ГІГ°Г®ГЁГІГј ГўГ Г«
+void BuildShaft(double, double, double, double, double, double, double, double, int);
 
-// Построить подшипник
-void BuildBearing(double, unsigned,double,double);
+
+// ГЏГ®Г±ГІГ°Г®ГЁГІГј ГЇГ®Г¤ГёГЁГЇГ­ГЁГЄ
+void BuildBearing(double,double,double, int);
