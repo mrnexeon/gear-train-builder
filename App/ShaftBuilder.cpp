@@ -3,11 +3,12 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index) {
+bool BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index, CString folder) {
 
 	if ((length1 + length2 - 3 - lengthBearing) < lengthGear) {
-		MessageBox(NULL, _T("Íåêóäà ñàæàòü êîëåñî/øåñòåðíþ!"), _T("Error"), MB_OK);
+		MessageBox(NULL, _T("�������� ���������!"), _T("Error"), MB_OK);
 		return false;
+	}
 															  
 	// Óêàçàòåëü íà äîêóìåíò, ïðåäñòàâëÿþùèé äåòàëü
 	PartDocumentPtr p_PartDocumnet;
@@ -40,7 +41,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 		true
 	);
 
-	p_PartDocumnet->DisplayName = _T("Âàë"); // Íàçâàíèå äåòàëè
+	p_PartDocumnet->DisplayName = _T("���"); // Íàçâàíèå äåòàëè
 
 	// Èíèöèàëèçàöèÿ óêàçàòåëåé
 
@@ -358,13 +359,8 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 
 	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + slotDeap), kPositiveExtentDirection, kJoinOperation);   //âûäàâëèâàíèå íà ïîîîëíóþ âûñîòó
 	
-	
-	// Ñîõðàíåíèå äåòàëè
-	// TODO: Çàäàâàòü ïîëüçîâàòåëüñêèé ïóòü
 
-	TCHAR szDirectory[MAX_PATH];
-	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Ñáîðêà\\Âàë") + _bstr_t(index) + _bstr_t(".ipt"), false);
+	p_PartDocumnet->MethodSaveAs(folder.GetString() + _bstr_t("\\������\\���") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
 	return true;
 }

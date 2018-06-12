@@ -1,9 +1,9 @@
 #include "stdafx.h"
 #include "AssemblyBuilder.h"
 #include "Inventor.h"
+#include "Utility.h"
 
-
-void BuildAssembly() {
+void BuildAssembly(double distance, CString folder) {
 	// Указатель на менеджер по построению геометрии
 	TransientGeometry *p_TransGeom;
 
@@ -25,8 +25,8 @@ void BuildAssembly() {
 	MatrixPtr p_PosMatrix;
 	p_PosMatrix = p_TransGeom->MethodCreateMatrix();
 
-	TCHAR szDirectory[MAX_PATH];
-	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+	LPCWSTR szDirectory;
+	szDirectory = folder.GetString();
 
 	AssemblyComponentDefinitionPtr p_AssemCompDef;
 	p_AssemCompDef = p_AssemblyDoc->GetComponentDefinition();
@@ -80,7 +80,7 @@ void BuildAssembly() {
 	// Совмещаем Оси валов
 	p_Shaft1->MethodCreateGeometryProxy(p_Shaft1Def->WorkAxes->Item[1], (IDispatch**)&p_WorkAxis1);
 	p_Shaft2->MethodCreateGeometryProxy(p_Shaft2Def->WorkAxes->Item[1], (IDispatch**)&p_WorkAxis2);
-	p_AssemCompDef->Constraints->MethodAddMateConstraint(p_WorkAxis1, p_WorkAxis2, 65.0, kNoInference, kNoInference);
+	p_AssemCompDef->Constraints->MethodAddMateConstraint(p_WorkAxis1, p_WorkAxis2, mm_to_cm(distance), kNoInference, kNoInference);
 
 	// Совмещаем Оси валов в одну плоскость
 
