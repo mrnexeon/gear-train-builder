@@ -3,7 +3,7 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildBearing(double indiametr, double outdiametr, double B) {
+void BuildBearing(double indiametr, double outdiametr, double B, int index) {
 	// Указатель на документ, представляющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -189,12 +189,15 @@ void BuildBearing(double indiametr, double outdiametr, double B) {
 		true,
 		kIdenticalCompute
 	);
-	return;
 	
 	// Сохранение детали
 	// TODO: Задавать пользовательский путь
 
 	TCHAR szDirectory[MAX_PATH];
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
+<<<<<<< HEAD
 	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник.ipt"), false);
+=======
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник") + _bstr_t(index) + _bstr_t(".ipt"), false);
+>>>>>>> master
 }
