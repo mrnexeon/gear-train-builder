@@ -3,7 +3,16 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap) {
+bool BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap) {
+	
+	if ((length1 + length2 - 3 - lengthBearing) < lengthGear) {
+		MessageBox(NULL, _T("Ќекуда сажать колесо/шестерню!"), _T("Error"), MB_OK);
+		return false;
+															  }
+
+
+	
+	
 	// ”казатель на документ, представл€ющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -361,5 +370,5 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
 	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\—борка\\¬ал.ipt"), false);
 
-	return;
+	return true;
 }
