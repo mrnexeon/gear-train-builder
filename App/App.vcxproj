@@ -237,7 +237,11 @@
     <Image Include="C:\Users\Bydmak\Downloads\Val.bmp" />
     <Image Include="res\App.ico" />
     <Image Include="res\AppDoc.ico" />
+    <Image Include="res\Izometria.bmp" />
+    <Image Include="res\Podshipnik.bmp" />
+    <Image Include="res\Shesterenka_i_koleso.bmp" />
     <Image Include="res\Toolbar.bmp" />
+    <Image Include="res\Val.bmp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

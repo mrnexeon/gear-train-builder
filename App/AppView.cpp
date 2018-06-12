@@ -1,10 +1,10 @@
-
-// AppView.cpp: ðåàëèçàöèÿ êëàññà CAppView
+ï»¿
+// AppView.cpp: Ñ€ÐµÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ñ ÐºÐ»Ð°ÑÑÐ° CAppView
 //
 
 #include "stdafx.h"
-// SHARED_HANDLERS ìîæíî îïðåäåëèòü â îáðàáîò÷èêàõ ôèëüòðîâ ïðîñìîòðà ðåàëèçàöèè ïðîåêòà ATL, ýñêèçîâ
-// è ïîèñêà; ïîçâîëÿåò ñîâìåñòíî èñïîëüçîâàòü êîä äîêóìåíòà â äàííûì ïðîåêòå.
+// SHARED_HANDLERS Ð¼Ð¾Ð¶Ð½Ð¾ Ð¾Ð¿Ñ€ÐµÐ´ÐµÐ»Ð¸Ñ‚ÑŒ Ð² Ð¾Ð±Ñ€Ð°Ð±Ð¾Ñ‚Ñ‡Ð¸ÐºÐ°Ñ… Ñ„Ð¸Ð»ÑŒÑ‚Ñ€Ð¾Ð² Ð¿Ñ€Ð¾ÑÐ¼Ð¾Ñ‚Ñ€Ð° Ñ€ÐµÐ°Ð»Ð¸Ð·Ð°Ñ†Ð¸Ð¸ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ð° ATL, ÑÑÐºÐ¸Ð·Ð¾Ð²
+// Ð¸ Ð¿Ð¾Ð¸ÑÐºÐ°; Ð¿Ð¾Ð·Ð²Ð¾Ð»ÑÐµÑ‚ ÑÐ¾Ð²Ð¼ÐµÑÑ‚Ð½Ð¾ Ð¸ÑÐ¿Ð¾Ð»ÑŒÐ·Ð¾Ð²Ð°Ñ‚ÑŒ ÐºÐ¾Ð´ Ð´Ð¾ÐºÑƒÐ¼ÐµÐ½Ñ‚Ð° Ð² Ð´Ð°Ð½Ð½Ñ‹Ð¼ Ð¿Ñ€Ð¾ÐµÐºÑ‚Ðµ.
 #ifndef SHARED_HANDLERS
 #include "App.h"
 #endif
@@ -28,7 +28,7 @@
 IMPLEMENT_DYNCREATE(CAppView, CFormView)
 
 BEGIN_MESSAGE_MAP(CAppView, CFormView)
-	// Ñòàíäàðòíûå êîìàíäû ïå÷àòè
+	// Ð¡Ñ‚Ð°Ð½Ð´Ð°Ñ€Ñ‚Ð½Ñ‹Ðµ ÐºÐ¾Ð¼Ð°Ð½Ð´Ñ‹ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸
 	ON_COMMAND(ID_FILE_PRINT, &CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CFormView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CFormView::OnFilePrintPreview)
@@ -39,12 +39,12 @@ BEGIN_MESSAGE_MAP(CAppView, CFormView)
 	ON_BN_CLICKED(IDC_BUTTON1, &CAppView::OnBnClickedButton1)
 END_MESSAGE_MAP()
 
-// Ñîçäàíèå èëè óíè÷òîæåíèå CAppView
+// Ð¡Ð¾Ð·Ð´Ð°Ð½Ð¸Ðµ Ð¸Ð»Ð¸ ÑƒÐ½Ð¸Ñ‡Ñ‚Ð¾Ð¶ÐµÐ½Ð¸Ðµ CAppView
 
 CAppView::CAppView()
 	: CFormView(IDD_APP_FORM)
 {
-	// TODO: äîáàâüòå êîä ñîçäàíèÿ
+	// TODO: Ð´Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ ÐºÐ¾Ð´ ÑÐ¾Ð·Ð´Ð°Ð½Ð¸Ñ
 
 }
 
@@ -56,29 +56,31 @@ void CAppView::DoDataExchange(CDataExchange* pDX)
 {
 	CFormView::DoDataExchange(pDX);
 	DDX_Control(pDX, IDC_STATIC100, _image);
-	DDX_Text(pDX, IDC_EDIT1, _h);
-	DDX_Text(pDX, IDC_EDIT2, _h);
-	DDX_Text(pDX, IDC_EDIT3, _h);
-	DDX_Text(pDX, IDC_EDIT4, _h);
-	DDX_Text(pDX, IDC_EDIT14, _h);
-	DDX_Text(pDX, IDC_EDIT15, _h);
-	DDX_Text(pDX, IDC_EDIT16, _h);
-	DDX_Text(pDX, IDC_EDIT17, _h);
-	DDX_Text(pDX, IDC_EDIT5, _h);
-	DDX_Text(pDX, IDC_EDIT6, _h);
-	DDX_Text(pDX, IDC_EDIT20, _h);
-	DDX_Text(pDX, IDC_EDIT21, _h);
-	DDX_Text(pDX, IDC_EDIT7, _h);
-	DDX_Text(pDX, IDC_EDIT8, _h);
-	DDX_Text(pDX, IDC_EDIT9, _h);
-	DDX_Text(pDX, IDC_EDIT10, _h);
+	DDX_Text(pDX, IDC_EDIT1, m_DiametrVnechShest);
+	DDX_Text(pDX, IDC_EDIT2, m_DiametrVnytrShest);
+	DDX_Text(pDX, IDC_EDIT3, m_nZyb);
+	DDX_Text(pDX, IDC_EDIT4, m_ShirinaShest);
+	DDX_Text(pDX, IDC_EDIT15, m_DiametrVnechShest2);
+	DDX_Text(pDX, IDC_EDIT14, m_DiametrVnytrShest2);
+	DDX_Text(pDX, IDC_EDIT16, m_nZyb2);
+	DDX_Text(pDX, IDC_EDIT17, m_ShirinaShest2);
+	DDX_Text(pDX, IDC_EDIT5, m_DiametrVnytrPodship);
+	DDX_Text(pDX, IDC_EDIT6, m_ShirinaPoship);
+	DDX_Text(pDX, IDC_EDIT20, m_DiametrVnytrPodship2);
+	DDX_Text(pDX, IDC_EDIT21, m_ShirinaPoship2);
+	DDX_Text(pDX, IDC_EDIT7, m_DlinaVala1);
+	DDX_Text(pDX, IDC_EDIT8, m_DlinaVala2);
+	DDX_Text(pDX, IDC_EDIT9, m_DlinaVala12);
+	DDX_Text(pDX, IDC_EDIT10, m_DlinaVala22);
+	DDX_Text(pDX, IDC_EDIT11, m_DiametrVnechPodship);
+	DDX_Text(pDX, IDC_EDIT12, m_DiametrVnechPodship2);
 
 
 }
 
 BOOL CAppView::PreCreateWindow(CREATESTRUCT& cs)
 {
-	// TODO: èçìåíèòü êëàññ Window èëè ñòèëè ïîñðåäñòâîì èçìåíåíèÿ
+	// TODO: Ð¸Ð·Ð¼ÐµÐ½Ð¸Ñ‚ÑŒ ÐºÐ»Ð°ÑÑ Window Ð¸Ð»Ð¸ ÑÑ‚Ð¸Ð»Ð¸ Ð¿Ð¾ÑÑ€ÐµÐ´ÑÑ‚Ð²Ð¾Ð¼ Ð¸Ð·Ð¼ÐµÐ½ÐµÐ½Ð¸Ñ
 	//  CREATESTRUCT cs
 
 	return CFormView::PreCreateWindow(cs);
@@ -93,31 +95,31 @@ void CAppView::OnInitialUpdate()
 }
 
 
-// Ïå÷àòü CAppView
+// ÐŸÐµÑ‡Ð°Ñ‚ÑŒ CAppView
 
 BOOL CAppView::OnPreparePrinting(CPrintInfo* pInfo)
 {
-	// ïîäãîòîâêà ïî óìîë÷àíèþ
+	// Ð¿Ð¾Ð´Ð³Ð¾Ñ‚Ð¾Ð²ÐºÐ° Ð¿Ð¾ ÑƒÐ¼Ð¾Ð»Ñ‡Ð°Ð½Ð¸ÑŽ
 	return DoPreparePrinting(pInfo);
 }
 
 void CAppView::OnBeginPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: äîáàâüòå äîïîëíèòåëüíóþ èíèöèàëèçàöèþ ïåðåä ïå÷àòüþ
+	// TODO: Ð´Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ Ð´Ð¾Ð¿Ð¾Ð»Ð½Ð¸Ñ‚ÐµÐ»ÑŒÐ½ÑƒÑŽ Ð¸Ð½Ð¸Ñ†Ð¸Ð°Ð»Ð¸Ð·Ð°Ñ†Ð¸ÑŽ Ð¿ÐµÑ€ÐµÐ´ Ð¿ÐµÑ‡Ð°Ñ‚ÑŒÑŽ
 }
 
 void CAppView::OnEndPrinting(CDC* /*pDC*/, CPrintInfo* /*pInfo*/)
 {
-	// TODO: äîáàâüòå î÷èñòêó ïîñëå ïå÷àòè
+	// TODO: Ð´Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ Ð¾Ñ‡Ð¸ÑÑ‚ÐºÑƒ Ð¿Ð¾ÑÐ»Ðµ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸
 }
 
 void CAppView::OnPrint(CDC* pDC, CPrintInfo* /*pInfo*/)
 {
-	// TODO: äîáàâüòå ñâîé êîä ïå÷àòè
+	// TODO: Ð´Ð¾Ð±Ð°Ð²ÑŒÑ‚Ðµ ÑÐ²Ð¾Ð¹ ÐºÐ¾Ð´ Ð¿ÐµÑ‡Ð°Ñ‚Ð¸
 }
 
 
-// Äèàãíîñòèêà CAppView
+// Ð”Ð¸Ð°Ð³Ð½Ð¾ÑÑ‚Ð¸ÐºÐ° CAppView
 
 #ifdef _DEBUG
 void CAppView::AssertValid() const
@@ -130,7 +132,7 @@ void CAppView::Dump(CDumpContext& dc) const
 	CFormView::Dump(dc);
 }
 
-CAppDoc* CAppView::GetDocument() const // âñòðîåíà íåîòëàæåííàÿ âåðñèÿ
+CAppDoc* CAppView::GetDocument() const // Ð²ÑÑ‚Ñ€Ð¾ÐµÐ½Ð° Ð½ÐµÐ¾Ñ‚Ð»Ð°Ð¶ÐµÐ½Ð½Ð°Ñ Ð²ÐµÑ€ÑÐ¸Ñ
 {
 	ASSERT(m_pDocument->IsKindOf(RUNTIME_CLASS(CAppDoc)));
 	return (CAppDoc*)m_pDocument;
@@ -193,6 +195,8 @@ void CAppView::Update()
 	GetDlgItem(IDC_STATIC25)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC9)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_STATIC10)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC11)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_STATIC12)->ShowWindow(SW_HIDE);
 	
 
 	
@@ -218,6 +222,8 @@ void CAppView::Update()
 	GetDlgItem(IDC_EDIT21)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT9)->ShowWindow(SW_HIDE);
 	GetDlgItem(IDC_EDIT10)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT11)->ShowWindow(SW_HIDE);
+	GetDlgItem(IDC_EDIT12)->ShowWindow(SW_HIDE);
 	
 
 	if (selected == -1) {
@@ -231,33 +237,33 @@ void CAppView::Update()
 		CBitmap bm; 
 		bm.LoadBitmap(IDB_BITMAP1); _image.SetBitmap(bm);
 		GetDlgItem(IDC_STATIC18)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC18)->SetWindowTextW(_T("Êîëåñî"));
+		GetDlgItem(IDC_STATIC18)->SetWindowTextW(_T("ÐšÐ¾Ð»ÐµÑÐ¾"));
 		GetDlgItem(IDC_STATIC13)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC13)->SetWindowTextW(_T("Øåñòåðíÿ"));
+		GetDlgItem(IDC_STATIC13)->SetWindowTextW(_T("Ð¨ÐµÑÑ‚ÐµÑ€Ð½Ñ"));
 		GetDlgItem(IDC_STATIC1)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT1)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Âíåøíèé äèàìåòð"));
+		GetDlgItem(IDC_STATIC1)->SetWindowTextW(_T("Ð’Ð½ÐµÑˆÐ½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
 		GetDlgItem(IDC_STATIC2)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT2)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Âíóòðåííèé äèàìåòð"));
+		GetDlgItem(IDC_STATIC2)->SetWindowTextW(_T("Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
 		GetDlgItem(IDC_STATIC3)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT3)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("Êîëè÷åñòâî çóáüåâ"));
+		GetDlgItem(IDC_STATIC3)->SetWindowTextW(_T("ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð·ÑƒÐ±ÑŒÐµÐ²"));
 		GetDlgItem(IDC_STATIC4)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT4)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("Øèðèíà øåñòåðíè"));
+		GetDlgItem(IDC_STATIC4)->SetWindowTextW(_T("Ð¨Ð¸Ñ€Ð¸Ð½Ð° ÑˆÐµÑÑ‚ÐµÑ€Ð½Ð¸"));
 		GetDlgItem(IDC_STATIC14)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT14)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC14)->SetWindowTextW(_T("Âíåøíèé äèàìåòð"));
+		GetDlgItem(IDC_STATIC14)->SetWindowTextW(_T("Ð’Ð½ÐµÑˆÐ½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
 		GetDlgItem(IDC_STATIC15)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT15)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC15)->SetWindowTextW(_T("Âíóòðåííèé äèàìåòð"));
+		GetDlgItem(IDC_STATIC15)->SetWindowTextW(_T("Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
 		GetDlgItem(IDC_STATIC16)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT16)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC16)->SetWindowTextW(_T("Êîëè÷åñòâî çóáüåâ"));
+		GetDlgItem(IDC_STATIC16)->SetWindowTextW(_T("ÐšÐ¾Ð»Ð¸Ñ‡ÐµÑÑ‚Ð²Ð¾ Ð·ÑƒÐ±ÑŒÐµÐ²"));
 		GetDlgItem(IDC_STATIC17)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT17)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC17)->SetWindowTextW(_T("Øèðèíà êîëåñà"));
+		GetDlgItem(IDC_STATIC17)->SetWindowTextW(_T("Ð¨Ð¸Ñ€Ð¸Ð½Ð° ÐºÐ¾Ð»ÐµÑÐ°"));
 	}
 	if (selected == 1)
 	{
@@ -265,20 +271,26 @@ void CAppView::Update()
 		bm.LoadBitmap(IDB_BITMAP2); _image.SetBitmap(bm);
 		GetDlgItem(IDC_STATIC5)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT5)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("Âíóòðåííèé äèàìåòð"));
+		GetDlgItem(IDC_STATIC5)->SetWindowTextW(_T("Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
+		GetDlgItem(IDC_STATIC11)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT11)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC11)->SetWindowTextW(_T("Ð’Ð½ÐµÑˆÐ½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
 		GetDlgItem(IDC_STATIC6)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT6)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("Øèðèíà ïîäøèïíèêà"));
+		GetDlgItem(IDC_STATIC6)->SetWindowTextW(_T("Ð¨Ð¸Ñ€Ð¸Ð½Ð° Ð¿Ð¾Ð´ÑˆÐ¸Ð¿Ð½Ð¸ÐºÐ°"));
 		GetDlgItem(IDC_STATIC20)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT20)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC20)->SetWindowTextW(_T("Âíóòðåííèé äèàìåòð"));
+		GetDlgItem(IDC_STATIC20)->SetWindowTextW(_T("Ð’Ð½ÑƒÑ‚Ñ€ÐµÐ½Ð½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
+		GetDlgItem(IDC_STATIC12)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_EDIT12)->ShowWindow(SW_SHOW);
+		GetDlgItem(IDC_STATIC12)->SetWindowTextW(_T("Ð’Ð½ÐµÑˆÐ½Ð¸Ð¹ Ð´Ð¸Ð°Ð¼ÐµÑ‚Ñ€"));
 		GetDlgItem(IDC_STATIC21)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT21)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC21)->SetWindowTextW(_T("Øèðèíà ïîäøèïíèêà"));
+		GetDlgItem(IDC_STATIC21)->SetWindowTextW(_T("Ð¨Ð¸Ñ€Ð¸Ð½Ð° Ð¿Ð¾Ð´ÑˆÐ¸Ð¿Ð½Ð¸ÐºÐ°"));
 		GetDlgItem(IDC_STATIC22)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC22)->SetWindowTextW(_T("Ïåðâûé ïîäøèïíèê"));
+		GetDlgItem(IDC_STATIC22)->SetWindowTextW(_T("ÐŸÐµÑ€Ð²Ñ‹Ð¹ Ð¿Ð¾Ð´ÑˆÐ¸Ð¿Ð½Ð¸Ðº"));
 		GetDlgItem(IDC_STATIC23)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC23)->SetWindowTextW(_T("Âòîðîé ïîäøèïíèê"));
+		GetDlgItem(IDC_STATIC23)->SetWindowTextW(_T("Ð’Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð¿Ð¾Ð´ÑˆÐ¸Ð¿Ð½Ð¸Ðº"));
 	}
 
 	if (selected == 2)
@@ -287,20 +299,20 @@ void CAppView::Update()
 		bm.LoadBitmap(IDB_BITMAP3); _image.SetBitmap(bm);
 		GetDlgItem(IDC_STATIC7)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT7)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("Äëèíà âàëà l1"));
+		GetDlgItem(IDC_STATIC7)->SetWindowTextW(_T("Ð”Ð»Ð¸Ð½Ð° Ð²Ð°Ð»Ð° l1"));
 		GetDlgItem(IDC_STATIC8)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT8)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("Äëèíà âàëà l2"));
+		GetDlgItem(IDC_STATIC8)->SetWindowTextW(_T("Ð”Ð»Ð¸Ð½Ð° Ð²Ð°Ð»Ð° l2"));
 		GetDlgItem(IDC_STATIC24)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC24)->SetWindowTextW(_T("Âòîðîé âàë"));
+		GetDlgItem(IDC_STATIC24)->SetWindowTextW(_T("Ð’Ñ‚Ð¾Ñ€Ð¾Ð¹ Ð²Ð°Ð»"));
 		GetDlgItem(IDC_STATIC25)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC25)->SetWindowTextW(_T("Ïåðâûé âàë"));
+		GetDlgItem(IDC_STATIC25)->SetWindowTextW(_T("ÐŸÐµÑ€Ð²Ñ‹Ð¹ Ð²Ð°Ð»"));
 		GetDlgItem(IDC_STATIC9)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT9)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC9)->SetWindowTextW(_T("Äëèíà âàëà l1"));
+		GetDlgItem(IDC_STATIC9)->SetWindowTextW(_T("Ð”Ð»Ð¸Ð½Ð° Ð²Ð°Ð»Ð° l1"));
 		GetDlgItem(IDC_STATIC10)->ShowWindow(SW_SHOW);
 		GetDlgItem(IDC_EDIT10)->ShowWindow(SW_SHOW);
-		GetDlgItem(IDC_STATIC10)->SetWindowTextW(_T("Äëèíà âàëà l2"));
+		GetDlgItem(IDC_STATIC10)->SetWindowTextW(_T("Ð”Ð»Ð¸Ð½Ð° Ð²Ð°Ð»Ð° l2"));
 	}
 	
 }
