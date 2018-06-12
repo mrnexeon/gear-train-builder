@@ -1,10 +1,11 @@
 #pragma once
 
-// Построить шестерню
+// ГЏГ®Г±ГІГ°Г®ГЁГІГј ГёГҐГ±ГІГҐГ°Г­Гѕ
 void BuildGear(double, double, double, unsigned, double, double, int);
 
-// Построить вал
+// ГЏГ®Г±ГІГ°Г®ГЁГІГј ГўГ Г«
 void BuildShaft(double, double, double, double, double, double, double, double, int);
 
-// Построить подшипник
+
+// ГЏГ®Г±ГІГ°Г®ГЁГІГј ГЇГ®Г¤ГёГЁГЇГ­ГЁГЄ
 void BuildBearing(double,double,double, int);

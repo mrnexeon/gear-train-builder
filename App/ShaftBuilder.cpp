@@ -4,47 +4,52 @@
 #include "Utility.h"
 
 void BuildShaft(double length1,double length2, double diameterGear, double diameterBearing, double lengthGear /*30*/ , double lengthBearing /*20*/,double slotWidth, double slotDeap, int index) {
-	// Указатель на документ, представляющий деталь
+
+	if ((length1 + length2 - 3 - lengthBearing) < lengthGear) {
+		MessageBox(NULL, _T("ГЌГҐГЄГіГ¤Г  Г±Г Г¦Г ГІГј ГЄГ®Г«ГҐГ±Г®/ГёГҐГ±ГІГҐГ°Г­Гѕ!"), _T("Error"), MB_OK);
+		return false;
+															  
+	// Г“ГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¤Г®ГЄГіГ¬ГҐГ­ГІ, ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГїГѕГ№ГЁГ© Г¤ГҐГІГ Г«Гј
 	PartDocumentPtr p_PartDocumnet;
 
-	// Указатель на деталь и ее содержимое (эскизы, оси и т.д.)
+	// Г“ГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¤ГҐГІГ Г«Гј ГЁ ГҐГҐ Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГҐ (ГЅГ±ГЄГЁГ§Г», Г®Г±ГЁ ГЁ ГІ.Г¤.)
 	PartComponentDefinition *p_PartComponentDef;
 
-	// Указатель на менеджер по построению геометрии
+	// Г“ГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¬ГҐГ­ГҐГ¤Г¦ГҐГ° ГЇГ® ГЇГ®Г±ГІГ°Г®ГҐГ­ГЁГѕ ГЈГҐГ®Г¬ГҐГІГ°ГЁГЁ
 	TransientGeometry *p_TransGeom;
 
-	// Указатель на менеджер по построению детали
+	// Г“ГЄГ Г§Г ГІГҐГ«Гј Г­Г  Г¬ГҐГ­ГҐГ¤Г¦ГҐГ° ГЇГ® ГЇГ®Г±ГІГ°Г®ГҐГ­ГЁГѕ Г¤ГҐГІГ Г«ГЁ
 	TransactionManagerPtr p_TransManager;
 
-	// Объект представления хода детали
+	// ГЋГЎГєГҐГЄГІ ГЇГ°ГҐГ¤Г±ГІГ ГўГ«ГҐГ­ГЁГї ГµГ®Г¤Г  Г¤ГҐГІГ Г«ГЁ
 	Transaction *p_Transaction;
 
-	Document *Doc; // Файл проекта в Inventor
-	PlanarSketches *p_plannarSketches; // Эскизы
-	WorkPlanes *p_workPlanes; // Рабочие плоскости
-	PartFeatures *p_partFeatures; // Инструменты
-	WorkAxes *p_workAxes; // Оси
-	WorkPoints *p_workPoints; // Точки
+	Document *Doc; // Г”Г Г©Г« ГЇГ°Г®ГҐГЄГІГ  Гў Inventor
+	PlanarSketches *p_plannarSketches; // ГќГ±ГЄГЁГ§Г»
+	WorkPlanes *p_workPlanes; // ГђГ ГЎГ®Г·ГЁГҐ ГЇГ«Г®Г±ГЄГ®Г±ГІГЁ
+	PartFeatures *p_partFeatures; // Г€Г­Г±ГІГ°ГіГ¬ГҐГ­ГІГ»
+	WorkAxes *p_workAxes; // ГЋГ±ГЁ
+	WorkPoints *p_workPoints; // Г’Г®Г·ГЄГЁ
 
-	p_PartDocumnet = p_invApp->Documents->MethodAdd( // Создание детали
+	p_PartDocumnet = p_invApp->Documents->MethodAdd( // Г‘Г®Г§Г¤Г Г­ГЁГҐ Г¤ГҐГІГ Г«ГЁ
 		kPartDocumentObject,
 		p_invApp->FileManager->MethodGetTemplateFile(
 			kPartDocumentObject,
-			kMetricSystemOfMeasure, // Метрическая СИ
+			kMetricSystemOfMeasure, // ГЊГҐГІГ°ГЁГ·ГҐГ±ГЄГ Гї Г‘Г€
 			kGOST_DraftingStandard),
 		true
 	);
 
-	p_PartDocumnet->DisplayName = _T("Вал"); // Название детали
+	p_PartDocumnet->DisplayName = _T("Г‚Г Г«"); // ГЌГ Г§ГўГ Г­ГЁГҐ Г¤ГҐГІГ Г«ГЁ
 
-	// Инициализация указателей
+	// Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГіГЄГ Г§Г ГІГҐГ«ГҐГ©
 
 	p_TransManager = p_invApp->GetTransactionManager();
 	p_invApp->get_TransientGeometry(&p_TransGeom);
 	Doc = CComQIPtr<Document>(p_PartDocumnet); 
 	p_PartDocumnet->get_ComponentDefinition(&p_PartComponentDef);
 
-	// Инициализация указателей на содержимое детали
+	// Г€Г­ГЁГ¶ГЁГ Г«ГЁГ§Г Г¶ГЁГї ГіГЄГ Г§Г ГІГҐГ«ГҐГ© Г­Г  Г±Г®Г¤ГҐГ°Г¦ГЁГ¬Г®ГҐ Г¤ГҐГІГ Г«ГЁ
 
 	p_PartComponentDef->get_Sketches(&p_plannarSketches);
 	p_PartComponentDef->get_WorkPlanes(&p_workPlanes);
@@ -52,7 +57,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 	p_PartComponentDef->get_WorkAxes(&p_workAxes);
 	p_PartComponentDef->get_WorkPoints(&p_workPoints);
 
-	p_TransManager->raw_StartTransaction(Doc, _T("Вал"), &p_Transaction);
+	p_TransManager->raw_StartTransaction(Doc, _T("Г‚Г Г«"), &p_Transaction);
 
 	//double w1 = length1, w2 = length2, /*w3 = 100,*/ w6 = 130, w4 = 160, w5 = 180 , d1 = diametrBearing -20, d2 = diametrBearing, /*d3 = 68,*/ d4 = diameterGear, d5 = diametrBearing -10, wpz1 = 2, dp = 3;
 
@@ -112,12 +117,12 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 		skProfiles->raw__AddForSolid(&pProfile);
 
 		RevolveFeatures *ftRevolve;
-		p_partFeatures->get_RevolveFeatures(&ftRevolve); //указатель на коллекцию вращений в документе
+		p_partFeatures->get_RevolveFeatures(&ftRevolve); //ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  ГЄГ®Г«Г«ГҐГЄГ¶ГЁГѕ ГўГ°Г Г№ГҐГ­ГЁГ© Гў Г¤Г®ГЄГіГ¬ГҐГ­ГІГҐ
 
-		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //вращаем сей чертёж
+		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //ГўГ°Г Г№Г ГҐГ¬ Г±ГҐГ© Г·ГҐГ°ГІВёГ¦
 
 
-		FilletFeatures *pFilletFt;  //порождение сглаживаний
+		FilletFeatures *pFilletFt;  //ГЇГ®Г°Г®Г¦Г¤ГҐГ­ГЁГҐ Г±ГЈГ«Г Г¦ГЁГўГ Г­ГЁГ©
 		p_partFeatures->get_FilletFeatures(&pFilletFt);
 
 		EdgeCollection *edgeColl;
@@ -178,7 +183,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 		lines3[1] = skLines3->MethodAddByTwoPoints(point3[2], point3[5]);
 
 
-		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //порождение дуги через центр и 2 точки
+		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //ГЇГ®Г°Г®Г¦Г¤ГҐГ­ГЁГҐ Г¤ГіГЈГЁ Г·ГҐГ°ГҐГ§ Г¶ГҐГ­ГІГ° ГЁ 2 ГІГ®Г·ГЄГЁ
 		arcs3[1] = skArcs3->MethodAddByCenterStartEndPoint(point3[3], point3[4], point3[5], false);
 
 		Profile *pProfile3;
@@ -232,12 +237,12 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 		skProfiles->raw__AddForSolid(&pProfile);
 
 		RevolveFeatures *ftRevolve;
-		p_partFeatures->get_RevolveFeatures(&ftRevolve); //указатель на коллекцию вращений в документе
+		p_partFeatures->get_RevolveFeatures(&ftRevolve); //ГіГЄГ Г§Г ГІГҐГ«Гј Г­Г  ГЄГ®Г«Г«ГҐГЄГ¶ГЁГѕ ГўГ°Г Г№ГҐГ­ГЁГ© Гў Г¤Г®ГЄГіГ¬ГҐГ­ГІГҐ
 
-		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //вращаем сей чертёж
+		RevolveFeaturePtr revolve1 = ftRevolve->MethodAddFull(pProfile, p_workAxes->GetItem(1), kJoinOperation);  //ГўГ°Г Г№Г ГҐГ¬ Г±ГҐГ© Г·ГҐГ°ГІВёГ¦
 
 
-		FilletFeatures *pFilletFt;  //порождение сглаживаний
+		FilletFeatures *pFilletFt;  //ГЇГ®Г°Г®Г¦Г¤ГҐГ­ГЁГҐ Г±ГЈГ«Г Г¦ГЁГўГ Г­ГЁГ©
 		p_partFeatures->get_FilletFeatures(&pFilletFt);
 
 		EdgeCollection *edgeColl;
@@ -298,7 +303,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 		lines3[1] = skLines3->MethodAddByTwoPoints(point3[2], point3[5]);
 
 
-		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //порождение дуги через центр и 2 точки
+		arcs3[0] = skArcs3->MethodAddByCenterStartEndPoint(point3[0], point3[1], point3[2], true);    //ГЇГ®Г°Г®Г¦Г¤ГҐГ­ГЁГҐ Г¤ГіГЈГЁ Г·ГҐГ°ГҐГ§ Г¶ГҐГ­ГІГ° ГЁ 2 ГІГ®Г·ГЄГЁ
 		arcs3[1] = skArcs3->MethodAddByCenterStartEndPoint(point3[3], point3[4], point3[5], false);
 
 		Profile *pProfile3;
@@ -342,7 +347,7 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 	lines2[1] = skLines2->MethodAddByTwoPoints(point2[2], point2[5]);
 
 
-	arcs2[0] = skArcs->MethodAddByCenterStartEndPoint(point2[0], point2[1], point2[2], true);    //порождение дуги через центр и 2 точки
+	arcs2[0] = skArcs->MethodAddByCenterStartEndPoint(point2[0], point2[1], point2[2], true);    //ГЇГ®Г°Г®Г¦Г¤ГҐГ­ГЁГҐ Г¤ГіГЈГЁ Г·ГҐГ°ГҐГ§ Г¶ГҐГ­ГІГ° ГЁ 2 ГІГ®Г·ГЄГЁ
 	arcs2[1] = skArcs->MethodAddByCenterStartEndPoint(point2[3], point2[4], point2[5], false);
 
 	Profile *pProfile2;
@@ -351,15 +356,15 @@ void BuildShaft(double length1,double length2, double diameterGear, double diame
 	ExtrudeFeatures *ftExtrude2;
 	p_partFeatures->get_ExtrudeFeatures(&ftExtrude2);
 
-	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + slotDeap), kPositiveExtentDirection, kJoinOperation);   //выдавливание на пооолную высоту
+	ExtrudeFeaturePtr extrude2 = ftExtrude2->MethodAddByDistanceExtent(pProfile2, mm_to_cm((diameterGear / 2.f) + slotDeap), kPositiveExtentDirection, kJoinOperation);   //ГўГ»Г¤Г ГўГ«ГЁГўГ Г­ГЁГҐ Г­Г  ГЇГ®Г®Г®Г«Г­ГіГѕ ГўГ»Г±Г®ГІГі
 	
 	
-	// Сохранение детали
-	// TODO: Задавать пользовательский путь
+	// Г‘Г®ГµГ°Г Г­ГҐГ­ГЁГҐ Г¤ГҐГІГ Г«ГЁ
+	// TODO: Г‡Г Г¤Г ГўГ ГІГј ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГЁГ© ГЇГіГІГј
 
 	TCHAR szDirectory[MAX_PATH];
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Вал") + _bstr_t(index) + _bstr_t(".ipt"), false);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Г‘ГЎГ®Г°ГЄГ \\Г‚Г Г«") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
-	return;
+	return true;
 }
