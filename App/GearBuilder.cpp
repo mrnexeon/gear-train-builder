@@ -3,7 +3,7 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildGear(double outerDiameter, double insideDiameter, double thickness, unsigned cogCount, double slotWidth, double slotDeep, int index) {
+bool BuildGear(double outerDiameter, double insideDiameter, double thickness, unsigned cogCount, double slotWidth, double slotDeep, int index, CString folder) {
 	// Указатель на документ, представляющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -282,9 +282,7 @@ void BuildGear(double outerDiameter, double insideDiameter, double thickness, un
 	// Сохранение детали
 	// TODO: Задавать пользовательский путь
 
-	TCHAR szDirectory[MAX_PATH];
-	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Шестерня") + _bstr_t(index) + _bstr_t(".ipt"), false);
+	p_PartDocumnet->MethodSaveAs(folder.GetString() + _bstr_t("\\Сборка\\Шестерня") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
-	return;
+	return true;
 }

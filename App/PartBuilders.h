@@ -1,11 +1,8 @@
 #pragma once
 
-// Ïîñòðîèòü øåñòåðíþ
-void BuildGear(double, double, double, unsigned, double, double, int);
+bool BuildGear(double, double, double, unsigned, double, double, int, CString);
 
-// Ïîñòðîèòü âàë
-void BuildShaft(double, double, double, double, double, double, double, double, int);
+bool BuildShaft(double, double, double, double, double, double, double, double, int, CString);
 
-// ��������� ���������
-bool BuildBearing(double, double, double, int);
+bool BuildBearing(double, double, double, int, CString);
 

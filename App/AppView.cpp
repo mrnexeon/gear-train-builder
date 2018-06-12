@@ -65,9 +65,9 @@ void CAppView::DoDataExchange(CDataExchange* pDX)
 	DDX_Text(pDX, IDC_EDIT16, m_nZyb2);
 	DDX_Text(pDX, IDC_EDIT17, m_ShirinaShest2);
 	DDX_Text(pDX, IDC_EDIT5, m_DiametrVnytrPodship);
-	DDX_Text(pDX, IDC_EDIT6, m_ShirinaPoship);
+	DDX_Text(pDX, IDC_EDIT6, m_nPoship);
 	DDX_Text(pDX, IDC_EDIT20, m_DiametrVnytrPodship2);
-	DDX_Text(pDX, IDC_EDIT21, m_ShirinaPoship2);
+	DDX_Text(pDX, IDC_EDIT21, m_nPoship2);
 	DDX_Text(pDX, IDC_EDIT7, m_DlinaVala1);
 	DDX_Text(pDX, IDC_EDIT8, m_DlinaVala2);
 	DDX_Text(pDX, IDC_EDIT9, m_DlinaVala12);
@@ -143,8 +143,8 @@ CAppDoc* CAppView::GetDocument() const // встроена неотлаженн�
 void CAppView::On32771()
 {
 	InitializeInventor();
-	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0, 1);
-	BuildGear(800.0, 200.0, 40.0, 36, 30.0, 10.0, 2);
+	BuildGear(500.0, 100.0, 40.0, 32, 20.0, 5.0, 1, NULL);
+	BuildGear(800.0, 200.0, 40.0, 36, 30.0, 10.0, 2, NULL);
 
 }
 
@@ -152,16 +152,16 @@ void CAppView::On32772()
 {
 	InitializeInventor();
 
-	BuildShaft(100.0, 125.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1);
-	BuildShaft(200.0, 250.0, 200.0, 100.0, 50.0, 20.0, 30.0, 10.0, 2);
+	BuildShaft(100.0, 125.0, 100.0, 80.0, 30.0, 20.0, 20.0,5.0, 1, NULL);
+	BuildShaft(200.0, 250.0, 200.0, 100.0, 50.0, 20.0, 30.0, 10.0, 2, NULL);
 }
 
 void CAppView::On32773()
 {
 
 	InitializeInventor();
-	BuildBearing(80.0,120.0, 20, 1);
-	BuildBearing(100.0, 150.0, 26, 2);
+	BuildBearing(80.0,120.0, 20, 1, NULL);
+	BuildBearing(100.0, 150.0, 26, 2, NULL);
 
 }
 void CAppView::Update()
@@ -325,8 +325,8 @@ void CAppView::Update()
 
 void CAppView::On32774()
 {
-	InitializeInventor();
-	BuildAssembly();
+	//InitializeInventor();
+	//BuildAssembly();
 }
 
 // callback function 
@@ -368,5 +368,16 @@ void CAppView::OnBnClickedButton1()
 	UpdateData(true);
 	CString folder = BrowseForFolder(this->m_hWnd, L"Select Folder", L"C:\\");
 
+	InitializeInventor();
 
+	BuildGear(m_DiametrVnechShest, m_DiametrVnytrShest, m_ShirinaShest, m_nZyb, 20.0, 5.0, 1, folder);
+	BuildGear(m_DiametrVnechShest2, m_DiametrVnytrShest2, m_ShirinaShest2, m_nZyb2, 30.0, 10.0, 2, folder);
+
+	BuildShaft(m_DlinaVala1, m_DlinaVala2, m_DiametrVnytrShest, m_DiametrVnytrPodship, m_ShirinaShest, m_nPoship, 30.0, 5.0, 1, folder);
+	BuildShaft(m_DlinaVala12, m_DlinaVala22, m_DiametrVnytrShest2, m_DiametrVnytrPodship2, m_ShirinaShest2, m_nPoship2, 50.0, 10.0, 2, folder);
+
+	BuildBearing(m_DiametrVnytrPodship, m_DiametrVnechPodship, m_nPoship, 1, folder);
+	BuildBearing(m_DiametrVnytrPodship2, m_DiametrVnechPodship2, m_nPoship2, 2, folder);
+
+	BuildAssembly((m_DiametrVnechShest + m_DiametrVnechShest2) / 2.0, folder);
 }

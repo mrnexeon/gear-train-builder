@@ -1,3 +1,3 @@
 #pragma once
 
-void BuildAssembly();
+void BuildAssembly(double, CString);

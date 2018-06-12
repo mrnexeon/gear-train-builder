@@ -4,7 +4,7 @@
 #include "Utility.h"
 
 
-bool BuildBearing(double indiametr, double outdiametr, double B, int index) {
+bool BuildBearing(double indiametr, double outdiametr, double B, int index, CString folder) {
 	if (indiametr > outdiametr) 
 	{
 		MessageBox(	NULL, _T("Внутренний диаметр больше внешнего"), _T("Error"), MB_OK);
@@ -214,9 +214,7 @@ bool BuildBearing(double indiametr, double outdiametr, double B, int index) {
 	// Сохранение детали
 	// TODO: Задавать пользовательский путь
 
-	TCHAR szDirectory[MAX_PATH];
-	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник") + _bstr_t(index) + _bstr_t(".ipt"), true);
+	p_PartDocumnet->MethodSaveAs(folder.GetString() + _bstr_t("\\Сборка\\Подшипник") + _bstr_t(index) + _bstr_t(".ipt"), false);
 
 	return true;
 }
