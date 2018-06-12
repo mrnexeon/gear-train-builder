@@ -3,7 +3,28 @@
 #include "PartBuilders.h"
 #include "Utility.h"
 
-void BuildBearing(double indiametr, double outdiametr, double B, int index) {
+
+bool BuildBearing(double indiametr, double outdiametr, double B, int index) {
+	if (indiametr > outdiametr) 
+	{
+		MessageBox(	NULL, _T("Внутренний диаметр больше внешнего"), _T("Error"), MB_OK);
+		return false;
+	}
+	else if (indiametr <= 0) 
+	{
+		MessageBox(NULL, _T("Внутренний диаметр меньше или равен 0"), _T("Error"), MB_OK);
+		return false;
+	}
+	else if (outdiametr <= 0)
+	{ 
+		MessageBox(NULL, _T("Внешний диаметр меньше или равен 0"), _T("Error"), MB_OK);
+		return false;
+	}
+	else if (B <= 0)
+	{
+		MessageBox(NULL, _T("Ширина подшипника меньше или равена 0"), _T("Error"), MB_OK);
+		return false;
+	}
 	// Указатель на документ, представляющий деталь
 	PartDocumentPtr p_PartDocumnet;
 
@@ -96,10 +117,10 @@ void BuildBearing(double indiametr, double outdiametr, double B, int index) {
 	points1[3] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(B/2), mm_to_cm(outdiametr / 2)), false);
 	points1[4] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(B/2), mm_to_cm(indiametr/2+DofBall/ 2.8)), false);
 	points1[5] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(-B/2), mm_to_cm(indiametr/2 + DofBall / 2.8)), false);
-	points1[6] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm((indiametr/2+DofBall/2))), false);
+	points1[6] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm((indiametr/2+DofBall/2.2))), false);
 	points1[7] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm (-B/2), mm_to_cm((outdiametr/2-DofBall/ 2.8))), false);
 	points1[8] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(B/2), mm_to_cm((outdiametr/2 - DofBall/ 2.8))), false);
-	points1[9] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm((outdiametr/2-DofBall/2))), false);
+	points1[9] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm((outdiametr/2-DofBall/2.2))), false);
 	points1[10] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(-B/2+ DofBall / 6.5), mm_to_cm(indiametr / 2 + DofBall / 2.8)), false);
 	points1[11] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(B/2-DofBall/6.5), mm_to_cm(indiametr / 2 + DofBall / 2.8)), false);
 	points1[12] = p_Points->MethodAdd(p_TransGeom->MethodCreatePoint2d(mm_to_cm(-B / 2 + DofBall / 6.5), mm_to_cm((outdiametr / 2 - DofBall / 2.8))), false);
@@ -149,8 +170,8 @@ void BuildBearing(double indiametr, double outdiametr, double B, int index) {
 	p_Sketch2->get_SketchLines(&p_Lines2);
 	p_Sketch2->get_SketchArcs(&p_Arc2);
 
-	points2[0] = p_Points2->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm(Centre/2+DofBall/2.5)), false);
-	points2[1] = p_Points2->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm(Centre/2 - DofBall/2.5)), false);
+	points2[0] = p_Points2->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm(Centre/2+DofBall/3.5)), false);
+	points2[1] = p_Points2->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm(Centre/2 - DofBall/3.5)), false);
 	points2[2] = p_Points2->MethodAdd(p_TransGeom->MethodCreatePoint2d(0, mm_to_cm(Centre/2)), false);
 
 	Lines2[0] = p_Lines2->MethodAddByTwoPoints(points2[0], points2[1]);
@@ -184,7 +205,7 @@ void BuildBearing(double indiametr, double outdiametr, double B, int index) {
 		p_collection1,
 		p_workAxes->GetItem(1),
 		true,
-		N,
+		N-1,
 		"360",
 		true,
 		kIdenticalCompute
@@ -195,5 +216,7 @@ void BuildBearing(double indiametr, double outdiametr, double B, int index) {
 
 	TCHAR szDirectory[MAX_PATH];
 	::GetCurrentDirectory(sizeof(szDirectory) - 1, szDirectory);
-	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник") + _bstr_t(index) + _bstr_t(".ipt"), false);
+	p_PartDocumnet->MethodSaveAs(szDirectory + _bstr_t("\\Сборка\\Подшипник") + _bstr_t(index) + _bstr_t(".ipt"), true);
+
+	return true;
 }

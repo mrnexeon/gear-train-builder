@@ -23,11 +23,6 @@ protected:
 public:
 	virtual BOOL OnInitDialog();
 	void Update();
-	
-	afx_msg void OnEnChangeEdit3();
-	afx_msg void OnEnChangeEdit7();
-	afx_msg void OnStnClickedStatic4();
-	afx_msg void OnStnClickedStatic14();
-	afx_msg void OnStnClickedStatic8();
-	afx_msg void OnStnClickedStatic9();
+
+
 };
